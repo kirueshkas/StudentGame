@@ -17,6 +17,7 @@ namespace StudentGame.Game
         Button optionsButton = Interface.CreateButton(330, 50, 1000, 660, "Options", Resource.button_new, "options");
         Button exitButton = Interface.CreateButton(330, 50, 1000, 715, "Exit", Resource.button_new, "exit");
         Button editorWindow = Interface.CreateButton(120, 160, 600, 550, "Editor", Resource.photo_box, "editor", false);
+        Button registerButton = Interface.CreateButton(330, 50, 600, 715, "Register", Resource.button_new, "register");
         TextBox nameTextBox = Interface.CreateTextBox(200, 40, 730, 550, "Name", 0);
         TextBox surNameTextBox = Interface.CreateTextBox(200, 40, 730, 600, "SurName", 1);
         TextBox passwordTextBox = Interface.CreateTextBox(200, 40, 730, 650, "Password", 2);
@@ -107,12 +108,14 @@ namespace StudentGame.Game
             this.RegisterButton(optionsButton);
             this.RegisterButton(exitButton);
             this.RegisterButton(editorWindow);
+            this.RegisterButton(registerButton);
 
             this.RegisterTextBox(nameTextBox);
             this.RegisterTextBox(surNameTextBox);
             this.RegisterTextBox(passwordTextBox);
             editorWindow.Click += EditorWindow_Click;
             exitButton.Click += ExitButton_Click;
+            registerButton.Click += RegisterButton_Click;
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -128,6 +131,15 @@ namespace StudentGame.Game
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void RegisterButton_Click(object sender, EventArgs e)
+        {
+            DbAcess db = new DbAcess();
+            User user = new User() { FirstName = nameTextBox.Text, SecondName = surNameTextBox.Text, Password = passwordTextBox.Text };
+            db.SaveUser(user);
+            var ourUser = db.GetLastUser();
+            Console.WriteLine(ourUser.FullInfo);
         }
     }
 }
