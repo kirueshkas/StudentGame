@@ -20,7 +20,9 @@ namespace StudentGame.Game
         Button nextBudyButton = Interface.CreateButton(250, 50, 1500, 400, "NextBody", Resource.button_new, "nextBody");
         Button backLegButton = Interface.CreateButton(250, 50, 200, 600, "BackLeg", Resource.button_new, "backLeg");
         Button nextLegButton = Interface.CreateButton(250, 50, 1500, 600, "NextLeg", Resource.button_new, "nextLeg");
-        Sprite2D editorChatacter = new Sprite2D(new Point(870, 550), "womanCharacter", Resource.WomanCharacter);
+        Button changeSexButton = Interface.CreateButton(250, 50, 830, 10, "ChangeSex", Resource.button_new, "ChangeSex");
+        Sprite2D editorCharacter = new Sprite2D(new Point(870, 550), "Character", Resource.ManCharacter);
+        static string characterSex = "woman";
         // Button BackSceneButton = Interface.CreateButton(100, 100, 10, 10, "Back", Resource.button_new, "Back");
 
         //Clothes
@@ -82,7 +84,9 @@ namespace StudentGame.Game
             backLegButton.Click += EditorButtons_Click;
             this.RegisterButton(nextLegButton);
             nextLegButton.Click += EditorButtons_Click;
-            this.RegisterSprite(editorChatacter);
+            this.RegisterButton(changeSexButton);
+            changeSexButton.Click += EditorButtons_Click;
+            this.RegisterSprite(editorCharacter);
             this.RegisterSprite(BodyClothes[bodyIndex]);
             this.RegisterSprite(LegClothes[legIndex]);
         }
@@ -114,6 +118,19 @@ namespace StudentGame.Game
                     legIndex = legIndex > LegClothes.Length - 2 ? 0 : legIndex + 1;
                     this.RegisterSprite(LegClothes[legIndex]);
                     break;
+                case "ChangeSex":
+                    if (User.sex == "woman")
+                    {
+                        editorCharacter.Sprite = Resource.ManCharacter;
+                        User.sex = "man";
+                    }
+                    else
+                    {
+                        editorCharacter.Sprite = Resource.WomanCharacter;
+                        User.sex = "woman";
+                    }
+                    break;
+
             }
         }
         private void EditorBackButton_Click(object sender, EventArgs e)

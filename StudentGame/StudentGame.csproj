@@ -58,6 +58,7 @@
     <Compile Include="Game\Scenes\EditorScene.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\Scenes\MenuScene.cs" />
+    <Compile Include="Game\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.Designer.cs">
@@ -146,6 +147,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WomanCharacter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ManCharacter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
