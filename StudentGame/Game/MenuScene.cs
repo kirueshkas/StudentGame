@@ -25,7 +25,7 @@ namespace StudentGame.Game
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
         Sprite2D flag = new Sprite2D(new Point(957, 180), "flag", Resource.flag_rus_sheet, 6);
 
-        public  void CreateMenu()
+        public void CreateMenu()
         {
             Engine.Engine.BackgroundColor = Color.SkyBlue;
 
@@ -103,6 +103,7 @@ namespace StudentGame.Game
 
             this.RegisterSprite(openStudik);
 
+            this.CheckSql();
             this.RegisterButton(startButton);
             this.RegisterButton(multiplayerButton);
             this.RegisterButton(optionsButton);
@@ -137,9 +138,31 @@ namespace StudentGame.Game
         {
             DbAcess db = new DbAcess();
             User user = new User() { FirstName = nameTextBox.Text, SecondName = surNameTextBox.Text, Password = passwordTextBox.Text };
-            db.SaveUser(user);
-            var ourUser = db.GetLastUser();
-            Console.WriteLine(ourUser.FullInfo);
+            if (user.FirstName == "Name" || user.SecondName == "SurName" || user.Password == "Password")
+                Console.WriteLine("Please, enter user!");
+            else
+            {
+                db.SaveUser(user);
+                var ourUser = db.GetLastUser();
+                Log.Info("User found " + ourUser.FullInfo);
+            }
+        }
+
+        private void CheckSql()
+        {
+            DbAcess db = new DbAcess();
+            try
+            {
+                var ourUser = db.GetLastUser();
+                Log.Info("User found " + ourUser.FullInfo);
+                nameTextBox.Text = ourUser.FirstName;
+                surNameTextBox.Text = ourUser.SecondName;
+                passwordTextBox.Text = ourUser.Password;
+            }
+            catch
+            {
+                Log.Error("No user");
+            }
         }
     }
 }
