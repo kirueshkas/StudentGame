@@ -55,9 +55,9 @@
     <Compile Include="Engine\Shape2D.cs" />
     <Compile Include="Engine\Sprite2D.cs" />
     <Compile Include="Engine\Vector2.cs" />
-    <Compile Include="Game\EditorScene.cs" />
+    <Compile Include="Game\Scenes\EditorScene.cs" />
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Game\MenuScene.cs" />
+    <Compile Include="Game\Scenes\MenuScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.Designer.cs">
