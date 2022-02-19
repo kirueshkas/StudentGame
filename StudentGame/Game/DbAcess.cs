@@ -34,6 +34,15 @@ namespace StudentGame.Game
                 con.Execute("INSERT INTO Users (firstName, secondName, password) VALUES (@FirstName, @SecondName, @Password)", user);
             }
         }
+        public void DeleteAllUsers()
+        {
+            using (IDbConnection con = new SQLiteConnection(LoadConnectionString("localDB")))
+            {
+                con.Execute("DELETE FROM Users;" +
+                    "UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = 'Users';");
+            }
+        }
+
         private string LoadConnectionString(string id)
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

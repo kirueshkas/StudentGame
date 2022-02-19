@@ -18,6 +18,7 @@ namespace StudentGame.Game
         Button exitButton = Interface.CreateButton(330, 50, 1000, 715, "Exit", Resource.button_new, "exit");
         Button editorWindow = Interface.CreateButton(120, 160, 600, 550, "Editor", Resource.photo_box, "editor", false);
         Button registerButton = Interface.CreateButton(330, 50, 600, 715, "Register", Resource.button_new, "register");
+        Button signOutButton = Interface.CreateButton(200, 40, 730, 650, "Sign out", Resource.button_new, "signOut");
         TextBox nameTextBox = Interface.CreateTextBox(200, 40, 730, 550, "Name", 0);
         TextBox surNameTextBox = Interface.CreateTextBox(200, 40, 730, 600, "SurName", 1);
         TextBox passwordTextBox = Interface.CreateTextBox(200, 40, 730, 650, "Password", 2);
@@ -103,7 +104,6 @@ namespace StudentGame.Game
 
             this.RegisterSprite(openStudik);
 
-            this.CheckSql();
             this.RegisterButton(startButton);
             this.RegisterButton(multiplayerButton);
             this.RegisterButton(optionsButton);
@@ -111,12 +111,16 @@ namespace StudentGame.Game
             this.RegisterButton(editorWindow);
             this.RegisterButton(registerButton);
 
+
             this.RegisterTextBox(nameTextBox);
             this.RegisterTextBox(surNameTextBox);
             this.RegisterTextBox(passwordTextBox);
+
             editorWindow.Click += EditorWindow_Click;
             exitButton.Click += ExitButton_Click;
             registerButton.Click += RegisterButton_Click;
+
+            this.CheckSql();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -144,7 +148,11 @@ namespace StudentGame.Game
             {
                 db.SaveUser(user);
                 var ourUser = db.GetLastUser();
-                Log.Info("User found " + ourUser.FullInfo);
+                Log.Info("User saved " + ourUser.FullInfo);
+
+                this.RegisterButton(signOutButton);
+                this.UnRegisterTextBox(passwordTextBox);
+                signOutButton.Click += SignOutButton_Click;
             }
         }
 
@@ -157,12 +165,25 @@ namespace StudentGame.Game
                 Log.Info("User found " + ourUser.FullInfo);
                 nameTextBox.Text = ourUser.FirstName;
                 surNameTextBox.Text = ourUser.SecondName;
-                passwordTextBox.Text = ourUser.Password;
+
+                this.RegisterButton(signOutButton);
+                this.UnRegisterTextBox(passwordTextBox);
+                signOutButton.Click += SignOutButton_Click;
             }
             catch
             {
-                Log.Error("No user");
+                Log.Error("No such user!");
             }
+        }
+
+        private void SignOutButton_Click(object sender, EventArgs e)
+        {
+            DbAcess db = new DbAcess();
+            nameTextBox.Text = "Name";
+            surNameTextBox.Text = "SurName";
+            this.UnRegisterButton(signOutButton);
+            this.RegisterTextBox(passwordTextBox);
+            db.DeleteAllUsers();
         }
     }
 }
