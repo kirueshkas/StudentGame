@@ -112,7 +112,6 @@ namespace StudentGame.Game
             this.RegisterTextBox(surNameTextBox);
             this.RegisterTextBox(passwordTextBox);
             editorWindow.Click += EditorWindow_Click;
-            optionsButton.Click += OptionsButton_Click;
             exitButton.Click += ExitButton_Click;
         }
 
@@ -124,11 +123,6 @@ namespace StudentGame.Game
         private void EditorWindow_Click(object sender, EventArgs e)
         {
             Engine.Engine.GetScene("editor");
-        }
-
-        private void OptionsButton_Click(object sender, EventArgs e)
-        {
-            Engine.Engine.GetScene("options");
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
