@@ -64,7 +64,6 @@ namespace StudentGame.Game
 
         public override void OnUpdate()
         {
-            throw new NotImplementedException();
         }
 
 
