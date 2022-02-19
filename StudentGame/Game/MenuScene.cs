@@ -20,7 +20,7 @@ namespace StudentGame.Game
         TextBox nameTextBox = Interface.CreateTextBox(200, 40, 730, 550, "Name", 0);
         TextBox surNameTextBox = Interface.CreateTextBox(200, 40, 730, 600, "SurName", 1);
         TextBox passwordTextBox = Interface.CreateTextBox(200, 40, 730, 650, "Password", 2);
-        Sprite2D urfu = new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_new_1920_1080);
+        Sprite2D urfu = DetermineSeasonAndTime();
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
         Sprite2D flag = new Sprite2D(new Point(957, 180), "flag", Resource.flag_rus_sheet, 6);
 
@@ -128,6 +128,24 @@ namespace StudentGame.Game
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        
+        private static Sprite2D DetermineSeasonAndTime()
+        {
+            var season = SeasonAndTime.season;
+            var dayTime = SeasonAndTime.dayTime;
+            switch (season)
+            {
+                case SeasonAndTime.Seasons.Summer:
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_summer);;
+                case SeasonAndTime.Seasons.Autumn:
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_autumn);;
+                case SeasonAndTime.Seasons.Winter:
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_winter);;
+                case SeasonAndTime.Seasons.Spring:
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_spring);;
+                default: return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_new_1920_1080);
+            }
         }
     }
 }

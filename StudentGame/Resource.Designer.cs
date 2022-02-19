@@ -273,9 +273,49 @@ namespace StudentGame {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap urfu_autumn {
+            get {
+                object obj = ResourceManager.GetObject("urfu_autumn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WomanCharacter {
             get {
                 object obj = ResourceManager.GetObject("WomanCharacter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap urfu_spring {
+            get {
+                object obj = ResourceManager.GetObject("urfu_spring", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap urfu_summer {
+            get {
+                object obj = ResourceManager.GetObject("urfu_summer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap urfu_winter {
+            get {
+                object obj = ResourceManager.GetObject("urfu_winter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
