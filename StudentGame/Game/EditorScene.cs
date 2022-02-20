@@ -12,7 +12,7 @@ namespace StudentGame.Game
     class EditorScene : Engine.Scene
     {
 
-        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.button_new, "back");
+        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.editor_button1, "back");
         Sprite2D secondHand = new Sprite2D(new Point(0, 0), "secondHand", Resource.character_editor);
         Button backHelmetButton = Interface.CreateButton(250, 50, 200, 200, "BackHelmet", Resource.button_new, "backHelmet");
         Button nextHelmetButton = Interface.CreateButton(250, 50, 1500, 200, "NextHelmet", Resource.button_new, "nextHelmet");
