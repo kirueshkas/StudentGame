@@ -121,6 +121,9 @@
   <data name="Body1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Body7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="body10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\body10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Body2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Body8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -132,6 +135,21 @@
   </data>
   <data name="Body5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Body6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Body6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Body6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Body7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Body7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Body8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Body8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="body9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\body9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bush_summer-Sheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\bush_summer-Sheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bush_summer_Sheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\bush_summer-Sheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,8 +169,14 @@
   <data name="cloud3_sheet_x10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\cloud3_sheet_x10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="editor_button1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\editor_button1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="flag_rus_sheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\flag_rus_sheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="game_font" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\game_font.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Leg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Leg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,16 +196,58 @@
   <data name="photo_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\photo_box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="radik" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\radik.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_General" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Settings_General.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_General2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Settings_General2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_Graphics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Settings_Graphics.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_Graphics2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Settings_Graphics2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_Sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Settings_Sound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_Sound2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Settings_Sound2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="studik" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\studik.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="studik_open_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\studik_open_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="urfu_fall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_fall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="urfu_new_1920_1080" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\urfu_new_1920_1080.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="urfu_new_1920_10801" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_new_1920_1080.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urfu_spring" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_spring.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urfu_summer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_summer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urfu_winter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_winter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="WomanCharacter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\WomanCharacter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="X_sign" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\X_sign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

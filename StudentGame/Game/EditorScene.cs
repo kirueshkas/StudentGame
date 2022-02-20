@@ -12,16 +12,26 @@ namespace StudentGame.Game
     class EditorScene : Engine.Scene
     {
 
-        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.editor_button1, "back");
+        Button backButton = Interface.CreateButton(170, 135, 0, 10, "Back", Resource., "back");
         Sprite2D secondHand = new Sprite2D(new Point(0, 0), "secondHand", Resource.character_editor);
-        Button backHelmetButton = Interface.CreateButton(250, 50, 200, 200, "BackHelmet", Resource.button_new, "backHelmet");
-        Button nextHelmetButton = Interface.CreateButton(250, 50, 1500, 200, "NextHelmet", Resource.button_new, "nextHelmet");
-        Button backBodyButton = Interface.CreateButton(250, 50, 200, 400, "BackBody", Resource.button_new, "backBody");
-        Button nextBudyButton = Interface.CreateButton(250, 50, 1500, 400, "NextBody", Resource.button_new, "nextBody");
-        Button backLegButton = Interface.CreateButton(250, 50, 200, 600, "BackLeg", Resource.button_new, "backLeg");
-        Button nextLegButton = Interface.CreateButton(250, 50, 1500, 600, "NextLeg", Resource.button_new, "nextLeg");
+
+        Button sexButton = Interface.CreateButton(245, 135, 55, 150, "Sex", Resource.button_new, "sex");
+        Button skinButton = Interface.CreateButton(245, 135, 305, 150, "Skin", Resource.button_new, "skin");
+        Button hairButton = Interface.CreateButton(245, 135, 175, 290, "Hair", Resource.button_new, "hair");
+        Button hatButton = Interface.CreateButton(245, 135, 55, 430, "Hat", Resource.button_new, "hat");
+        Button upperButton = Interface.CreateButton(245, 135, 305, 430, "Upper", Resource.button_new, "upper");
+        Button bottomButton = Interface.CreateButton(245, 135, 175, 570, "Bottom", Resource.button_new, "bottom");
+        Button shoesButton = Interface.CreateButton(245, 135, 55, 710, "Shoes", Resource.button_new, "shoes");
+        
+        Button previousButton = Interface.CreateButton(245, 135, 1365, 10, "Previous", Resource.button_new, "previous");
+        Button nextButton = Interface.CreateButton(245, 135, 1615, 10, "Next", Resource.button_new, "next");
+        Button selectButton = Interface.CreateButton(245, 135, 1495, 710, "Select", Resource.button_new, "select");
+
+
+
         Sprite2D editorChatacter = new Sprite2D(new Point(870, 550), "womanCharacter", Resource.WomanCharacter);
-        // Button BackSceneButton = Interface.CreateButton(100, 100, 10, 10, "Back", Resource.button_new, "Back");
+
+        //Button BackSceneButton = Interface.CreateButton(100, 100, 10, 10, "Back", Resource.button_new, "Back");
 
         //Clothes
         static Sprite2D body1 = new Sprite2D(new Point(870, 700), "body1", Resource.Body1);
@@ -72,18 +82,43 @@ namespace StudentGame.Game
         {
             this.RegisterButton(backButton);
             backButton.Click += EditorBackButton_Click;
+
             this.RegisterSprite(secondHand);
-            this.RegisterButton(backHelmetButton);
-            this.RegisterButton(nextHelmetButton);
-            this.RegisterButton(backBodyButton);
-            backBodyButton.Click += EditorButtons_Click;
-            this.RegisterButton(nextBudyButton);
-            nextBudyButton.Click += EditorButtons_Click;
-            this.RegisterButton(backLegButton);
-            backLegButton.Click += EditorButtons_Click;
-            this.RegisterButton(nextLegButton);
-            nextLegButton.Click += EditorButtons_Click;
-            this.RegisterSprite(editorChatacter);
+
+            this.RegisterButton(sexButton);
+            this.RegisterButton(skinButton);
+            this.RegisterButton(hairButton);
+            this.RegisterButton(hatButton);
+            this.RegisterButton(upperButton);
+            this.RegisterButton(bottomButton);
+            this.RegisterButton(shoesButton);
+            this.RegisterButton(previousButton);
+            this.RegisterButton(nextButton);
+            this.RegisterButton(selectButton);
+
+            sexButton.Click += EditorButtons_Click;
+            this.RegisterButton(sexButton);
+            skinButton.Click += EditorButtons_Click;
+            this.RegisterButton(skinButton);
+            hairButton.Click += EditorButtons_Click;
+            this.RegisterButton(hairButton);
+            hatButton.Click += EditorButtons_Click;
+            this.RegisterButton(hatButton);
+            upperButton.Click += EditorButtons_Click;
+            this.RegisterButton(upperButton);
+            bottomButton.Click += EditorButtons_Click;
+            this.RegisterButton(bottomButton);
+            shoesButton.Click += EditorButtons_Click;
+            this.RegisterButton(shoesButton);
+            previousButton.Click += EditorButtons_Click;
+            this.RegisterButton(previousButton);
+            nextButton.Click += EditorButtons_Click;
+            this.RegisterButton(nextButton);
+            selectButton.Click += EditorButtons_Click;
+            this.RegisterButton(selectButton);
+
+
+
             this.RegisterSprite(BodyClothes[bodyIndex]);
             this.RegisterSprite(LegClothes[legIndex]);
         }
