@@ -27,11 +27,12 @@ namespace StudentGame.Game
             }
         }
 
-        public User FindUser(User user)
+        public User GetUser(string name, string secondName)
         {
             using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
             {
-                return con.QueryFirst<User>($"SELECT * FROM Users WHERE firstName = @FirstName AND secondName = @SecondName", user);
+                var sql = $"SELECT * FROM Users WHERE FirstName = '{name}' AND SecondName = '{secondName}'";
+                return con.QueryFirst<User>(sql);
             }
         }
 
@@ -47,7 +48,7 @@ namespace StudentGame.Game
         {
             using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
             {
-                con.Execute("INSERT INTO Users (firstName, secondName, password) VALUES (@FirstName, @SecondName, @Password)", user);
+                con.Execute("INSERT INTO Users (FirstName, SecondName, Password, Sex, Body, Leg) VALUES (@FirstName, @SecondName, @Password, @Sex, @Body, @Leg)", user);
             }
         }
 
@@ -55,7 +56,26 @@ namespace StudentGame.Game
         {
             using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
             {
-                con.Execute("INSERT INTO Users (Id, FirstName, SecondName) VALUES (@Id, @FirstName, @SecondName)", user);
+                con.Execute("INSERT INTO Users (Id, FirstName, SecondName, Sex, Body, Leg) VALUES (@Id, @FirstName, @SecondName, @Sex, @Body, @Leg)", user);
+            }
+        }
+
+        public void UpdateUserClothes(User user)
+        {
+            using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
+            {
+                con.Execute("UPDATE Users SET Sex = @Sex, Body = @Body, Leg = @Leg WHERE Id = @Id", user);
+            }
+        }
+
+        public void RefreshUserByIdFrom(int id, string db)
+        {
+            this.DeleteAllUsers();
+            SQLiteAcess refreshDB = new SQLiteAcess(db);
+            var user = refreshDB.GetUser(id);
+            using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
+            {
+                con.Execute("INSERT INTO Users (Id, FirstName, SecondName, Sex, Body, Leg) VALUES (@Id, @FirstName, @SecondName, @Sex, @Body, @Leg)", user);
             }
         }
 

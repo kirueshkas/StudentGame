@@ -96,6 +96,7 @@
     <Content Include="Game\serverDb.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\ManCharacter.png" />
     <None Include="packages.config" />
     <None Include="Resources\clouds1.png" />
   </ItemGroup>

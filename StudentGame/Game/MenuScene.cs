@@ -25,7 +25,8 @@ namespace StudentGame.Game
         Sprite2D urfu = new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_new_1920_1080);
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
         Sprite2D flag = new Sprite2D(new Point(957, 180), "flag", Resource.flag_rus_sheet, 6);
-        bool IsSighedIn;
+        
+        public static bool IsSighedIn;
 
         public void CreateMenu()
         {
@@ -152,7 +153,7 @@ namespace StudentGame.Game
                 {
                     try
                     {
-                        var ourUser = serverDB.FindUser(user);
+                        var ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
                         if (ourUser.Password == passwordTextBox.Text)
                         {
                             localDB.SaveUserLocal(ourUser);
@@ -167,7 +168,7 @@ namespace StudentGame.Game
                     catch
                     {
                         serverDB.SaveUser(user);
-                        var ourUser = serverDB.FindUser(user);
+                        var ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
                         localDB.SaveUserLocal(ourUser);
 
                         Log.Info("User saved " + ourUser.FullInfo);
@@ -187,9 +188,12 @@ namespace StudentGame.Game
         private void CheckSql()
         {
             SQLiteAcess db = new SQLiteAcess("localDB");
+            
             try
             {
+                db.RefreshUserByIdFrom(db.GetLastUserId(), "serverDB");
                 var ourUser = db.GetUser(db.GetLastUserId());
+                
 
                 this.UnRegisterTextBox(passwordTextBox);
                 this.RegisterButton(signOutButton);
