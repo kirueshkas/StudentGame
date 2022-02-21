@@ -12,12 +12,22 @@ namespace StudentGame.Game
 {
     public class SQLiteAcess
     {
-        public SQLiteAcess(string DB)
+        public string DB { get; } = "localDB";
+        public bool IsEmpty
         {
-            this.DB = DB;
+            get
+            {
+                try
+                {
+                    GetLastUserId();
+                    return false;
+                }
+                catch
+                {
+                    return true;
+                }
+            }
         }
-
-        public string DB { get; }
 
         public int GetLastUserId()
         {
@@ -48,14 +58,6 @@ namespace StudentGame.Game
         {
             using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
             {
-                con.Execute("INSERT INTO Users (FirstName, SecondName, Password, Sex, Body, Leg) VALUES (@FirstName, @SecondName, @Password, @Sex, @Body, @Leg)", user);
-            }
-        }
-
-        public void SaveUserLocal(User user)
-        {
-            using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
-            {
                 con.Execute("INSERT INTO Users (Id, FirstName, SecondName, Sex, Body, Leg) VALUES (@Id, @FirstName, @SecondName, @Sex, @Body, @Leg)", user);
             }
         }
@@ -68,10 +70,10 @@ namespace StudentGame.Game
             }
         }
 
-        public void RefreshUserByIdFrom(int id, string db)
+        public void RefreshUserByIdFromServer(int id)
         {
             this.DeleteAllUsers();
-            SQLiteAcess refreshDB = new SQLiteAcess(db);
+            MySQL refreshDB = new MySQL();
             var user = refreshDB.GetUser(id);
             using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
             {
@@ -84,6 +86,15 @@ namespace StudentGame.Game
             using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
             {
                 con.Execute("DELETE FROM Users;" +
+                    "UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = 'Users';");
+            }
+        }
+
+        public void DeleteUserById(int id)
+        {
+            using (IDbConnection con = new SQLiteConnection(LoadConnectionString(DB)))
+            {
+                con.Execute($"DELETE FROM Users WHERE Id = {id};" +
                     "UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = 'Users';");
             }
         }

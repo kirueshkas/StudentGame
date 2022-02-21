@@ -11,7 +11,9 @@ namespace StudentGame.Game
 {
     class EditorScene : Engine.Scene
     {
-        User user;
+        public static User user = new User() { FirstName = "local", SecondName = "local", Password = "local" };
+        SQLiteAcess localDB = new SQLiteAcess();
+        MySQL serverDB = new MySQL();
 
         Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.button_new, "back");
         Sprite2D secondHand = new Sprite2D(new Point(0, 0), "secondHand", Resource.character_editor);
@@ -46,7 +48,7 @@ namespace StudentGame.Game
             body4,
             body5
         };
-        int bodyIndex = 0;
+        public static int bodyIndex = 0;
 
         Sprite2D[] LegClothes = new Sprite2D[]
         {
@@ -56,7 +58,7 @@ namespace StudentGame.Game
             leg4,
             leg5
         };
-        int legIndex = 0;
+        public static int legIndex = 0;
 
 
         public override void OnLoad()
@@ -90,7 +92,7 @@ namespace StudentGame.Game
             this.RegisterSprite(BodyClothes[bodyIndex]);
             this.RegisterSprite(LegClothes[legIndex]);
 
-            CheckSql();
+            //CheckSql();
         }
 
 
@@ -139,13 +141,16 @@ namespace StudentGame.Game
             user.Leg = legIndex.ToString();
             user.Body = bodyIndex.ToString();
 
-            SQLiteAcess localDB = new SQLiteAcess("localDB");
+            if (localDB.IsEmpty)
+            {
+                localDB.SaveUser(user);
+            }
+
             localDB.UpdateUserClothes(user);
             Log.Info("User clothes saved localy!");
 
             try
             {
-                SQLiteAcess serverDB = new SQLiteAcess("serverDB");
                 serverDB.UpdateUserClothes(user);
                 Log.Info("User clothes saved on server!");
             }
@@ -153,17 +158,30 @@ namespace StudentGame.Game
             {
                 Log.Warning("User clothes did not save on server!");
             }
-            
+
             Engine.Engine.GetScene("menu");
         }
 
         private void CheckSql()
         {
-            SQLiteAcess db = new SQLiteAcess("localDB");
-            try
+            if (!localDB.IsEmpty)
             {
-                db.RefreshUserByIdFrom(db.GetLastUserId(), "serverDB");
-                user = db.GetUser(db.GetLastUserId());
+                user = localDB.GetUser(localDB.GetLastUserId());
+                Log.Info("User found!");
+                if (user.FirstName != "local" && user.SecondName != "local")
+                {
+                    try
+                    {
+                        localDB.RefreshUserByIdFromServer(localDB.GetLastUserId());
+                        user = localDB.GetUser(localDB.GetLastUserId());
+
+                        Log.Info("User clothes updated!");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex.Message);
+                    }
+                }
 
                 if (user.Sex == "woman") editorCharacter.Sprite = Resource.WomanCharacter;
 
@@ -174,8 +192,10 @@ namespace StudentGame.Game
                 this.UnRegisterSprite(BodyClothes[bodyIndex]);
                 bodyIndex = int.Parse(user.Body);
                 this.RegisterSprite(BodyClothes[bodyIndex]);
+
+
             }
-            catch
+            else
             {
                 Log.Info("No user!");
             }

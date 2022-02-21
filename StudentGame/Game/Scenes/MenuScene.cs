@@ -25,7 +25,9 @@ namespace StudentGame.Game
         Sprite2D urfu = new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_new_1920_1080);
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
         Sprite2D flag = new Sprite2D(new Point(957, 180), "flag", Resource.flag_rus_sheet, 6);
-        
+
+        SQLiteAcess localDB = new SQLiteAcess();
+        MySQL serverDB = new MySQL();
         public static bool IsSighedIn;
 
         public void CreateMenu()
@@ -117,12 +119,28 @@ namespace StudentGame.Game
             this.RegisterTextBox(surNameTextBox);
             this.RegisterTextBox(passwordTextBox);
 
+
+            startButton.Click += StartButton_Click;
             editorWindow.Click += EditorWindow_Click;
             exitButton.Click += ExitButton_Click;
             registerButton.Click += RegisterButton_Click;
             signOutButton.Click += SignOutButton_Click;
 
             this.CheckSql();
+        }
+
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            MySQL servDb = new MySQL();
+            servDb.DB = "servDB";
+            try
+            {
+                servDb.GetUser(1);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -142,75 +160,95 @@ namespace StudentGame.Game
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            SQLiteAcess serverDB = new SQLiteAcess("serverDB");
-            SQLiteAcess localDB = new SQLiteAcess("localDB");
-            User user = new User() { FirstName = nameTextBox.Text, SecondName = surNameTextBox.Text, Password = passwordTextBox.Text };
+            User user = new User()
+            {
+                FirstName = nameTextBox.Text,
+                SecondName = surNameTextBox.Text,
+                Password = passwordTextBox.Text,
+                Sex = EditorScene.user.Sex,
+                Body = EditorScene.bodyIndex.ToString(),
+                Leg = EditorScene.legIndex.ToString()
+            };
             if (!IsSighedIn)
             {
-                if (user.FirstName == "Name" || user.SecondName == "SurName" || user.Password == "Password")
+                if (user.FirstName == "Name" || user.SecondName == "SurName" || user.Password == "Password" || (user.FirstName == "local" && user.SecondName == "local"))
                     Log.Warning("Please, enter user!");
                 else
                 {
+                    User ourUser;
                     try
                     {
-                        var ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
-                        if (ourUser.Password == passwordTextBox.Text)
+                        ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
+                        Log.Info("User found on server!");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex.Message);
+                        try
                         {
-                            localDB.SaveUserLocal(ourUser);
-                            Log.Info("User found " + ourUser.FullInfo);
+                            serverDB.SaveUser(user);
+                            ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
                         }
-                        else
+                        catch (Exception ex2)
                         {
-                            Log.Warning("Wrong password!");
+                            Log.Error(ex2.Message);
                             return;
                         }
                     }
-                    catch
+                    if (ourUser.Password == passwordTextBox.Text)
                     {
-                        serverDB.SaveUser(user);
-                        var ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
-                        localDB.SaveUserLocal(ourUser);
+                        localDB.SaveUser(user);
+                        this.UnRegisterTextBox(passwordTextBox);
+                        this.RegisterButton(signOutButton);
 
-                        Log.Info("User saved " + ourUser.FullInfo);
+                        IsSighedIn = true;
+
+                        nameTextBox.Enabled = false;
+                        surNameTextBox.Enabled = false;
+
+                        Log.Info("User signed in! " + ourUser.FullInfo);
                     }
-
-                    this.UnRegisterTextBox(passwordTextBox);
-                    this.RegisterButton(signOutButton);
-
-                    IsSighedIn = true;
-
-                    nameTextBox.Enabled = false;
-                    surNameTextBox.Enabled = false;
+                    else
+                        Log.Error("Wrong password!");
+                    return;
                 }
             }
         }
 
         private void CheckSql()
         {
-            SQLiteAcess db = new SQLiteAcess("localDB");
-            
-            try
+            if (!localDB.IsEmpty)
             {
-                db.RefreshUserByIdFrom(db.GetLastUserId(), "serverDB");
-                var ourUser = db.GetUser(db.GetLastUserId());
-                
+                var ourUser = localDB.GetUser(localDB.GetLastUserId());
 
-                this.UnRegisterTextBox(passwordTextBox);
-                this.RegisterButton(signOutButton);
+                if (!(ourUser.FirstName == "local" && ourUser.SecondName == "local"))
+                {
+                    try
+                    {
+                        localDB.RefreshUserByIdFromServer(localDB.GetLastUserId());
+                        ourUser = localDB.GetUser(localDB.GetLastUserId());
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Warning(ex.Message);
+                    }
 
-                nameTextBox.Text = ourUser.FirstName;
-                surNameTextBox.Text = ourUser.SecondName;
-                nameTextBox.Enabled = false;
-                surNameTextBox.Enabled = false;
+                    this.UnRegisterTextBox(passwordTextBox);
+                    this.RegisterButton(signOutButton);
 
-                IsSighedIn = true;
+                    nameTextBox.Text = ourUser.FirstName;
+                    surNameTextBox.Text = ourUser.SecondName;
+                    nameTextBox.Enabled = false;
+                    surNameTextBox.Enabled = false;
 
-                Log.Info("User found " + ourUser.FullInfo);
+                    IsSighedIn = true;
+
+                    Log.Info("User found " + ourUser.FullInfo);
+                }
             }
-            catch
-            {
+            else
                 Log.Info("No user!");
-            }
+
         }
 
         private void SignOutButton_Click(object sender, EventArgs e)
@@ -228,8 +266,7 @@ namespace StudentGame.Game
             nameTextBox.Enabled = true;
             surNameTextBox.Enabled = true;
 
-            var db = new SQLiteAcess("localDB");
-            db.DeleteAllUsers();
+            localDB.DeleteUserById(0);
 
             IsSighedIn = false;
 
