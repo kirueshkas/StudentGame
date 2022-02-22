@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace StudentGame.Game
 {
-    class MenuScene : Engine.Scene
+    class MenuScene : Scene
     {
         Button studikButton = Interface.CreateButton(Resource.studik.Width, Resource.studik.Height, 750, 510, "Studik", Resource.studik, "studik", false);
         Button startButton = Interface.CreateButton(330, 50, 1000, 550, "Start", Resource.button_new, "start");
@@ -24,7 +24,10 @@ namespace StudentGame.Game
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
         Sprite2D flag = new Sprite2D(new Point(957, 180), "flag", Resource.flag_rus_sheet, 6);
 
-        public  void CreateMenu()
+        static Sprite2D[] bushes = CreateBushesArray(6);
+        static Sprite2D[] clouds = CreateCloudsArray(9);
+
+        public void CreateMenu()
         {
             Engine.Engine.BackgroundColor = Color.SkyBlue;
 
@@ -54,8 +57,7 @@ namespace StudentGame.Game
 
         static Random rnd = new Random();
 
-        static Sprite2D[] bushes = CreateBushesArray(6);
-        static Sprite2D[] clouds = CreateCloudsArray(9);
+        
 
         static Sprite2D[] CreateBushesArray(int count)
         {
