@@ -142,6 +142,7 @@ namespace StudentGame.Game
             user.Body = bodyIndex.ToString();
 
             localDB.UpdateUserClothes(user);
+            user = localDB.GetUser(1);
             Log.Info("User clothes saved localy!");
             if (MenuScene.IsSighedIn)
                 try
