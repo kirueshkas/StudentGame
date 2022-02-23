@@ -11,7 +11,7 @@ namespace StudentGame.Game
 {
     class EditorScene : Engine.Scene
     {
-        public static User user = new User() { FirstName = "local", SecondName = "local", Password = "local" };
+        public static User user = new User();
         SQLiteAcess localDB = new SQLiteAcess();
         MySQL serverDB = new MySQL();
 
@@ -92,7 +92,7 @@ namespace StudentGame.Game
             this.RegisterSprite(BodyClothes[bodyIndex]);
             this.RegisterSprite(LegClothes[legIndex]);
 
-            //CheckSql();
+            CheckSql();
         }
 
 
@@ -141,46 +141,38 @@ namespace StudentGame.Game
             user.Leg = legIndex.ToString();
             user.Body = bodyIndex.ToString();
 
-            if (localDB.IsEmpty)
-            {
-                localDB.SaveUser(user);
-            }
-
             localDB.UpdateUserClothes(user);
             Log.Info("User clothes saved localy!");
-
-            try
-            {
-                serverDB.UpdateUserClothes(user);
-                Log.Info("User clothes saved on server!");
-            }
-            catch
-            {
-                Log.Warning("User clothes did not save on server!");
-            }
+            if (MenuScene.IsSighedIn)
+                try
+                {
+                    serverDB.UpdateUserClothes(user);
+                    Log.Info("User clothes saved on server!");
+                }
+                catch
+                {
+                    Log.Warning("User clothes did not save on server!");
+                }
 
             Engine.Engine.GetScene("menu");
         }
 
-        private void CheckSql()
+        public void CheckSql()
         {
-            if (!localDB.IsEmpty)
+            if (localDB.GetUser(1).FirstName != null)
             {
-                user = localDB.GetUser(localDB.GetLastUserId());
+                user = localDB.GetUser(1);
                 Log.Info("User found!");
-                if (user.FirstName != "local" && user.SecondName != "local")
+                try
                 {
-                    try
-                    {
-                        localDB.RefreshUserByIdFromServer(localDB.GetLastUserId());
-                        user = localDB.GetUser(localDB.GetLastUserId());
+                    localDB.RefreshUserByIdFromServer(user.Id);
+                    user = localDB.GetUser(1);
 
-                        Log.Info("User clothes updated!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex.Message);
-                    }
+                    Log.Info("User clothes updated!");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
                 }
 
                 if (user.Sex == "woman") editorCharacter.Sprite = Resource.WomanCharacter;
@@ -192,8 +184,6 @@ namespace StudentGame.Game
                 this.UnRegisterSprite(BodyClothes[bodyIndex]);
                 bodyIndex = int.Parse(user.Body);
                 this.RegisterSprite(BodyClothes[bodyIndex]);
-
-
             }
             else
             {

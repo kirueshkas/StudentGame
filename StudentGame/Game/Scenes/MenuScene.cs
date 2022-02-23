@@ -119,7 +119,6 @@ namespace StudentGame.Game
             this.RegisterTextBox(surNameTextBox);
             this.RegisterTextBox(passwordTextBox);
 
-
             startButton.Click += StartButton_Click;
             editorWindow.Click += EditorWindow_Click;
             exitButton.Click += ExitButton_Click;
@@ -131,21 +130,7 @@ namespace StudentGame.Game
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            MySQL servDb = new MySQL();
-            servDb.DB = "servDB";
-            try
-            {
-                servDb.GetUser(1);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex.Message);
-            }
-        }
 
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            Engine.Engine.GetScene("menu");
         }
 
         private void EditorWindow_Click(object sender, EventArgs e)
@@ -171,7 +156,10 @@ namespace StudentGame.Game
             };
             if (!IsSighedIn)
             {
-                if (user.FirstName == "Name" || user.SecondName == "SurName" || user.Password == "Password" || (user.FirstName == "local" && user.SecondName == "local"))
+                if (user.FirstName == "Name" ||
+                    user.SecondName == "SurName" ||
+                    user.Password == "Password" ||
+                    (user.FirstName == "local" && user.SecondName == "local"))
                     Log.Warning("Please, enter user!");
                 else
                 {
@@ -180,6 +168,10 @@ namespace StudentGame.Game
                     {
                         ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
                         Log.Info("User found on server!");
+                        if (ourUser.Password == passwordTextBox.Text)
+                            SignInUser(ourUser);
+                        else
+                            Log.Error("Wrong password!");
                     }
                     catch (Exception ex)
                     {
@@ -188,6 +180,7 @@ namespace StudentGame.Game
                         {
                             serverDB.SaveUser(user);
                             ourUser = serverDB.GetUser(user.FirstName, user.SecondName);
+                            SignInUser(ourUser);
                         }
                         catch (Exception ex2)
                         {
@@ -195,60 +188,41 @@ namespace StudentGame.Game
                             return;
                         }
                     }
-                    if (ourUser.Password == passwordTextBox.Text)
-                    {
-                        localDB.SaveUser(user);
-                        this.UnRegisterTextBox(passwordTextBox);
-                        this.RegisterButton(signOutButton);
-
-                        IsSighedIn = true;
-
-                        nameTextBox.Enabled = false;
-                        surNameTextBox.Enabled = false;
-
-                        Log.Info("User signed in! " + ourUser.FullInfo);
-                    }
-                    else
-                        Log.Error("Wrong password!");
-                    return;
                 }
             }
         }
 
         private void CheckSql()
         {
-            if (!localDB.IsEmpty)
+            if (localDB.GetUser(1).FirstName != null)
             {
-                var ourUser = localDB.GetUser(localDB.GetLastUserId());
-
-                if (!(ourUser.FirstName == "local" && ourUser.SecondName == "local"))
+                var ourUser = localDB.GetUser(1);
+                try
                 {
-                    try
-                    {
-                        localDB.RefreshUserByIdFromServer(localDB.GetLastUserId());
-                        ourUser = localDB.GetUser(localDB.GetLastUserId());
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Warning(ex.Message);
-                    }
-
-                    this.UnRegisterTextBox(passwordTextBox);
-                    this.RegisterButton(signOutButton);
-
-                    nameTextBox.Text = ourUser.FirstName;
-                    surNameTextBox.Text = ourUser.SecondName;
-                    nameTextBox.Enabled = false;
-                    surNameTextBox.Enabled = false;
-
-                    IsSighedIn = true;
-
-                    Log.Info("User found " + ourUser.FullInfo);
+                    localDB.RefreshUserByIdFromServer(ourUser.Id);
+                    ourUser = localDB.GetUser(1);
                 }
+                catch (Exception ex)
+                {
+                    Log.Warning(ex.Message);
+                }
+
+                this.UnRegisterTextBox(passwordTextBox);
+                this.RegisterButton(signOutButton);
+
+                nameTextBox.Text = ourUser.FirstName;
+                surNameTextBox.Text = ourUser.SecondName;
+                nameTextBox.Enabled = false;
+                surNameTextBox.Enabled = false;
+
+                IsSighedIn = true;
+
+                Log.Info("User found " + ourUser.FullInfo);
             }
             else
+            {
                 Log.Info("No user!");
-
+            }
         }
 
         private void SignOutButton_Click(object sender, EventArgs e)
@@ -266,11 +240,26 @@ namespace StudentGame.Game
             nameTextBox.Enabled = true;
             surNameTextBox.Enabled = true;
 
-            localDB.DeleteUserById(0);
+            User user = new User();
+            localDB.SaveUser(user);
 
             IsSighedIn = false;
 
             Log.Info("User signed out!");
+        }
+
+        private void SignInUser(User ourUser)
+        {
+            localDB.SaveUser(ourUser);
+            this.UnRegisterTextBox(passwordTextBox);
+            this.RegisterButton(signOutButton);
+
+            IsSighedIn = true;
+
+            nameTextBox.Enabled = false;
+            surNameTextBox.Enabled = false;
+
+            Log.Info("User signed in! " + ourUser.FullInfo);
         }
     }
 }
