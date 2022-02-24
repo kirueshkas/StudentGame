@@ -49,7 +49,6 @@ namespace StudentGame.Game
 
         public override void OnLoad()
         {
-            CreateMenu();
         }
 
         public override void OnUpdate()

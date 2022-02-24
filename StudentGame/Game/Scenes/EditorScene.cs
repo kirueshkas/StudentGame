@@ -62,11 +62,12 @@ namespace StudentGame.Game
 
         public override void OnLoad()
         {
-            CreateEdtior();
+            CheckSql();
         }
 
         public override void OnUpdate()
         {
+            
         }
 
 
@@ -90,8 +91,6 @@ namespace StudentGame.Game
             this.RegisterSprite(editorCharacter);
             this.RegisterSprite(BodyClothes[bodyIndex]);
             this.RegisterSprite(LegClothes[legIndex]);
-
-            CheckSql();
         }
 
 
@@ -175,20 +174,29 @@ namespace StudentGame.Game
                     Log.Error(ex.Message);
                 }
 
-                if (user.Sex == "woman") editorCharacter.Sprite = Resource.WomanCharacter;
-
-                this.UnRegisterSprite(LegClothes[legIndex]);
-                legIndex = int.Parse(user.Leg);
-                this.RegisterSprite(LegClothes[legIndex]);
-
-                this.UnRegisterSprite(BodyClothes[bodyIndex]);
-                bodyIndex = int.Parse(user.Body);
-                this.RegisterSprite(BodyClothes[bodyIndex]);
+                Update();
             }
             else
             {
+                user = new User();
+
+                Update();
                 Log.Info("No user!");
             }
+        }
+
+        private void Update()
+        {
+            if (user.Sex == "woman") editorCharacter.Sprite = Resource.WomanCharacter;
+            else editorCharacter.Sprite = Resource.ManCharacter;
+
+            this.UnRegisterSprite(LegClothes[legIndex]);
+            legIndex = int.Parse(user.Leg);
+            this.RegisterSprite(LegClothes[legIndex]);
+
+            this.UnRegisterSprite(BodyClothes[bodyIndex]);
+            bodyIndex = int.Parse(user.Body);
+            this.RegisterSprite(BodyClothes[bodyIndex]);
         }
     }
 }
