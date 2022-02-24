@@ -25,7 +25,6 @@ namespace StudentGame.Game
         Button nextLegButton = Interface.CreateButton(250, 50, 1500, 600, "NextLeg", Resource.button_new, "nextLeg");
         Button changeSexButton = Interface.CreateButton(250, 50, 830, 10, "ChangeSex", Resource.button_new, "ChangeSex");
         Sprite2D editorCharacter = new Sprite2D(new Point(870, 550), "Character", Resource.ManCharacter);
-        // Button BackSceneButton = Interface.CreateButton(100, 100, 10, 10, "Back", Resource.button_new, "Back");
 
         //Clothes
         static Sprite2D body1 = new Sprite2D(new Point(870, 700), "body1", Resource.Body1);
