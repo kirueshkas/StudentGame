@@ -21,8 +21,11 @@ namespace StudentGame.Game
         TextBox surNameTextBox = Interface.CreateTextBox(200, 40, 730, 600, "SurName", 1);
         TextBox passwordTextBox = Interface.CreateTextBox(200, 40, 730, 650, "Password", 2);
         static Random rnd = new Random();
-        private static Sprite2D urfu = DetermineSeasonAndTimeUrfu();
-        private static Bitmap bush = DetermineSeasonAndTimeBush();
+        private static Sprite2D urfu = DetermineSeasonUrfu();
+        private static Bitmap bush = DetermineSeasonBush();
+        private static Sprite2D[] stars;
+        private static Sprite2D sun;
+        private static Sprite2D moon;
         static Sprite2D[] bushes = CreateBushesArray(6);
         static Sprite2D[] clouds = CreateCloudsArray(9);
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
@@ -31,8 +34,9 @@ namespace StudentGame.Game
 
         public  void CreateMenu()
         {
-            Engine.Engine.BackgroundColor = Color.SkyBlue;
-
+            //Engine.Engine.BackgroundColor = Color.SkyBlue;
+            DetermineTime();
+            
             foreach (var cloud in clouds)
                 this.RegisterSprite(cloud);
 
@@ -131,10 +135,9 @@ namespace StudentGame.Game
             Application.Exit();
         }
 
-        private static Sprite2D DetermineSeasonAndTimeUrfu()
+        private static Sprite2D DetermineSeasonUrfu()
         {
             var season = SeasonAndTime.Season;
-            var dayTime = SeasonAndTime.DayTime;
             switch (season)
             {
                 case SeasonAndTime.Seasons.Summer:
@@ -150,10 +153,9 @@ namespace StudentGame.Game
             }
         }
         
-        private static Bitmap DetermineSeasonAndTimeBush()
+        private static Bitmap DetermineSeasonBush()
         {
             var season = SeasonAndTime.Season;
-            var dayTime = SeasonAndTime.DayTime;
             switch (season)
             {
                 case SeasonAndTime.Seasons.Summer:
@@ -166,6 +168,27 @@ namespace StudentGame.Game
                     return  Resource.bush_spring_Sheet;
                 default:
                     return Resource.bush_summer_Sheet;
+            }
+        }
+
+        private static void DetermineTime()
+        {
+            var dayTime = SeasonAndTime.DayTime;
+            switch (dayTime)
+            {
+                case SeasonAndTime.TimesDay.Morning:
+                    Engine.Engine.BackgroundColor = Color.Beige;
+                    break;
+                case SeasonAndTime.TimesDay.Day:
+                    Engine.Engine.BackgroundColor = Color.SkyBlue;
+                    break;
+                case SeasonAndTime.TimesDay.Evening:
+                    Engine.Engine.BackgroundColor = Color.FromArgb(250, 214, 165);
+                    break;
+                case SeasonAndTime.TimesDay.Night:
+                    Engine.Engine.BackgroundColor = Color.FromArgb(29, 29, 29);
+                    break;
+
             }
         }
     }
