@@ -140,7 +140,7 @@ namespace StudentGame.Game
                 case SeasonAndTime.Seasons.Summer:
                     return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_summer);
                 case SeasonAndTime.Seasons.Autumn:
-                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_autumn);
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_fall);
                 case SeasonAndTime.Seasons.Winter:
                     return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_winter);
                 case SeasonAndTime.Seasons.Spring:
