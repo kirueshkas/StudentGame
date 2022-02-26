@@ -115,6 +115,12 @@ namespace StudentGame.Game
             this.RegisterTextBox(passwordTextBox);
             editorWindow.Click += EditorWindow_Click;
             exitButton.Click += ExitButton_Click;
+            startButton.Click += StartButton_Click;
+        }
+
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            this.UnRegisterButton(startButton);
         }
 
         private void BackButton_Click(object sender, EventArgs e)
