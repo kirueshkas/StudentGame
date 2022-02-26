@@ -122,10 +122,10 @@ namespace StudentGame.Engine
                 g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X,shape.Position.Y,shape.Scale.X,shape.Scale.Y);
 
             foreach (var sprite in scenes[SceneID].AllSprites)
-                DrawAnimationAndImage(sprite);                         
+                DrawAnimationAndImage(sprite, g);                         
         }
 
-        private static void DrawAnimationAndImage(Sprite2D sprite)
+        private static void DrawAnimationAndImage(Sprite2D sprite, Graphics g)
         {
             g.DrawImage(
                    sprite.Sprite,  //Файл текстры объекта

@@ -12,14 +12,14 @@ namespace StudentGame.Game
     class EditorScene : Engine.Scene
     {
 
-        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.button_new, "back");
+        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", "back");
         Sprite2D secondHand = new Sprite2D(new Point(0, 0), "secondHand", Resource.character_editor);
-        Button backHelmetButton = Interface.CreateButton(250, 50, 200, 200, "BackHelmet", Resource.button_new, "backHelmet");
-        Button nextHelmetButton = Interface.CreateButton(250, 50, 1500, 200, "NextHelmet", Resource.button_new, "nextHelmet");
-        Button backBodyButton = Interface.CreateButton(250, 50, 200, 400, "BackBody", Resource.button_new, "backBody");
-        Button nextBudyButton = Interface.CreateButton(250, 50, 1500, 400, "NextBody", Resource.button_new, "nextBody");
-        Button backLegButton = Interface.CreateButton(250, 50, 200, 600, "BackLeg", Resource.button_new, "backLeg");
-        Button nextLegButton = Interface.CreateButton(250, 50, 1500, 600, "NextLeg", Resource.button_new, "nextLeg");
+        Button backHelmetButton = Interface.CreateButton(250, 50, 200, 200, "BackHelmet", "backHelmet");
+        Button nextHelmetButton = Interface.CreateButton(250, 50, 1500, 200, "NextHelmet", "nextHelmet");
+        Button backBodyButton = Interface.CreateButton(250, 50, 200, 400, "BackBody","backBody");
+        Button nextBudyButton = Interface.CreateButton(250, 50, 1500, 400, "NextBody", "nextBody");
+        Button backLegButton = Interface.CreateButton(250, 50, 200, 600, "BackLeg",  "backLeg");
+        Button nextLegButton = Interface.CreateButton(250, 50, 1500, 600, "NextLeg", "nextLeg");
         Sprite2D editorChatacter = new Sprite2D(new Point(870, 550), "womanCharacter", Resource.WomanCharacter);
         // Button BackSceneButton = Interface.CreateButton(100, 100, 10, 10, "Back", Resource.button_new, "Back");
 

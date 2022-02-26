@@ -136,6 +136,12 @@
   <data name="bush_summer_Sheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\bush_summer-Sheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="button_menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\button_menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="button_menu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\button_menu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="button_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\button_new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -168,6 +174,12 @@
   </data>
   <data name="Leg5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Leg5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="photobox1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\photobox1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="photobox2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\photobox2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="photo_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\photo_box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

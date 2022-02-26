@@ -123,6 +123,26 @@ namespace StudentGame {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap button_menu {
+            get {
+                object obj = ResourceManager.GetObject("button_menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_menu1 {
+            get {
+                object obj = ResourceManager.GetObject("button_menu1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap button_new {
             get {
                 object obj = ResourceManager.GetObject("button_new", resourceCulture);
@@ -236,6 +256,26 @@ namespace StudentGame {
         internal static System.Drawing.Bitmap photo_box {
             get {
                 object obj = ResourceManager.GetObject("photo_box", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photobox1 {
+            get {
+                object obj = ResourceManager.GetObject("photobox1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photobox2 {
+            get {
+                object obj = ResourceManager.GetObject("photobox2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
