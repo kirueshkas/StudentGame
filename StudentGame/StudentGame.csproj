@@ -52,6 +52,7 @@
     <Compile Include="Engine\Interface.cs" />
     <Compile Include="Engine\Log.cs" />
     <Compile Include="Engine\Scene.cs" />
+    <Compile Include="Engine\Season&amp;Time.cs" />
     <Compile Include="Engine\Shape2D.cs" />
     <Compile Include="Engine\Sprite2D.cs" />
     <Compile Include="Engine\Vector2.cs" />
