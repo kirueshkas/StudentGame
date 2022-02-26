@@ -21,38 +21,38 @@ namespace StudentGame.Engine
             Night
         };
 
-        public static Seasons season = DetermineSeason();
-        public static TimesDay dayTime = DetermineTimeDay();
-        private static DateTime TimeNow;
+        public static Seasons Season = DetermineSeason();
+        public static TimesDay DayTime = DetermineTimeDay();
+        private static DateTime timeNow;
 
         private static Seasons DetermineSeason()
         {
-            TimeNow = DateTime.Now;
-            var month = TimeNow.Month;
+            timeNow = DateTime.Now;
+            var month = timeNow.Month;
             if (month < 3 || month == 12) 
-                season = Seasons.Winter;
+                Season = Seasons.Winter;
             if (month > 2 && month < 6)
-                season = Seasons.Spring;
+                Season = Seasons.Spring;
             if (month > 5 && month < 9)
-                season = Seasons.Summer;
+                Season = Seasons.Summer;
             if (month > 8 && month < 12)
-                season = Seasons.Autumn;
-            return season;
+                Season = Seasons.Autumn;
+            return Season;
         }
 
         private static TimesDay DetermineTimeDay()
         {
-            TimeNow = DateTime.Now;
-            var time = TimeNow.Hour;
+            timeNow = DateTime.Now;
+            var time = timeNow.Hour;
             if (time < 6)
-                dayTime = TimesDay.Night;
+                DayTime = TimesDay.Night;
             if (time > 5 && time < 12)
-                dayTime = TimesDay.Morning;
+                DayTime = TimesDay.Morning;
             if (time > 11 && time < 18)
-                dayTime = TimesDay.Day;
+                DayTime = TimesDay.Day;
             if (time > 17)
-                dayTime = TimesDay.Evening;
-            return dayTime;
+                DayTime = TimesDay.Evening;
+            return DayTime;
         }
     }
 }

@@ -148,5 +148,10 @@
   <ItemGroup>
     <None Include="Resources\WomanCharacter.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\bush_fall-Sheet.png" />
+    <Content Include="Resources\bush_spring-Sheet.png" />
+    <Content Include="Resources\bush_winter-Sheet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

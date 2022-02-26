@@ -12,7 +12,7 @@ namespace StudentGame.Engine
         public Point position;
         public Size size;
         public string Tag = "";
-        public Bitmap Sprite = null;
+        public Bitmap Sprite;
         public int flip = 1;
         public int frameAmount = 1;
         public int currentFrame = 0;

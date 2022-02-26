@@ -20,9 +20,14 @@ namespace StudentGame.Game
         TextBox nameTextBox = Interface.CreateTextBox(200, 40, 730, 550, "Name", 0);
         TextBox surNameTextBox = Interface.CreateTextBox(200, 40, 730, 600, "SurName", 1);
         TextBox passwordTextBox = Interface.CreateTextBox(200, 40, 730, 650, "Password", 2);
-        Sprite2D urfu = DetermineSeasonAndTime();
+        static Random rnd = new Random();
+        private static Sprite2D urfu = DetermineSeasonAndTimeUrfu();
+        private static Bitmap bush = DetermineSeasonAndTimeBush();
+        static Sprite2D[] bushes = CreateBushesArray(6);
+        static Sprite2D[] clouds = CreateCloudsArray(9);
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
         Sprite2D flag = new Sprite2D(new Point(957, 180), "flag", Resource.flag_rus_sheet, 6);
+
 
         public  void CreateMenu()
         {
@@ -52,10 +57,6 @@ namespace StudentGame.Game
                 if (cloud.position.X < 1920) cloud.position.X++; else cloud.position.X = -cloud.size.Width;
         }
 
-        static Random rnd = new Random();
-
-        static Sprite2D[] bushes = CreateBushesArray(6);
-        static Sprite2D[] clouds = CreateCloudsArray(9);
 
         static Sprite2D[] CreateBushesArray(int count)
         {
@@ -69,7 +70,7 @@ namespace StudentGame.Game
                 { 1820, 930, 120 } };
 
             for (int i = 0; i < count; i++)
-                bushes[i] = new Sprite2D(new Point(param[i, 0], param[i, 1]), "bush" + i, Resource.bush_summer_Sheet, 4, param[i, 2]);
+                bushes[i] = new Sprite2D(new Point(param[i, 0], param[i, 1]), "bush" + i, bush, 4, param[i, 2]);
             return bushes;
         }
         static Sprite2D[] CreateCloudsArray(int count)
@@ -129,22 +130,42 @@ namespace StudentGame.Game
         {
             Application.Exit();
         }
-        
-        private static Sprite2D DetermineSeasonAndTime()
+
+        private static Sprite2D DetermineSeasonAndTimeUrfu()
         {
-            var season = SeasonAndTime.season;
-            var dayTime = SeasonAndTime.dayTime;
+            var season = SeasonAndTime.Season;
+            var dayTime = SeasonAndTime.DayTime;
             switch (season)
             {
                 case SeasonAndTime.Seasons.Summer:
-                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_summer);;
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_summer);
                 case SeasonAndTime.Seasons.Autumn:
-                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_autumn);;
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_autumn);
                 case SeasonAndTime.Seasons.Winter:
-                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_winter);;
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_winter);
                 case SeasonAndTime.Seasons.Spring:
-                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_spring);;
-                default: return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_new_1920_1080);
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_spring);
+                default:
+                    return new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_new_1920_1080);
+            }
+        }
+        
+        private static Bitmap DetermineSeasonAndTimeBush()
+        {
+            var season = SeasonAndTime.Season;
+            var dayTime = SeasonAndTime.DayTime;
+            switch (season)
+            {
+                case SeasonAndTime.Seasons.Summer:
+                    return Resource.bush_summer_Sheet;
+                case SeasonAndTime.Seasons.Autumn:
+                    return Resource.bush_fall_Sheet;
+                case SeasonAndTime.Seasons.Winter:
+                    return Resource.bush_winter_Sheet;
+                case SeasonAndTime.Seasons.Spring:
+                    return  Resource.bush_spring_Sheet;
+                default:
+                    return Resource.bush_summer_Sheet;
             }
         }
     }
