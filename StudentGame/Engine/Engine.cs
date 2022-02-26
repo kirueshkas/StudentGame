@@ -11,8 +11,7 @@ using System.Windows.Forms;
 namespace StudentGame.Engine
 {
     class Canvas : Form
-    {
-        
+    {        
         public Canvas()
         {
             ClientSize = new Size(1920, 1080);
@@ -51,13 +50,10 @@ namespace StudentGame.Engine
             Window.Text = this.Title;
             Window.Load += GameLoad;
             Window.Paint += RendererTextures;
-            
+           
             GameLoopThread = new Thread(GameLoop);
-
             GameLoopThread.Start();
-
             Log.Info("Game create!");
-
             Application.Run(Window);
             
         }
@@ -68,9 +64,9 @@ namespace StudentGame.Engine
             timer.Start();
         }
         public void Update(object sender, EventArgs e)
-        {
+        { 
             RendererInterface();
-            Window.Invalidate();
+            Window.Invalidate(); 
         }
         
         public static void RegisterScene(Scene scene)
@@ -112,6 +108,7 @@ namespace StudentGame.Engine
         {
             foreach (var gameButton in scenes[SceneID].AllGameButtons)
                 Window.Controls.Add(gameButton);
+
             foreach (var gameTextBox in scenes[SceneID].AllGameTextBoxes)
                 Window.Controls.Add(gameTextBox);
         }
@@ -120,24 +117,24 @@ namespace StudentGame.Engine
         {
             Graphics g = e.Graphics;
             g.Clear(BackgroundColor);
+
             foreach (var shape in scenes[SceneID].AllShapes)
-            {
                 g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X,shape.Position.Y,shape.Scale.X,shape.Scale.Y);
-            }
 
             foreach (var sprite in scenes[SceneID].AllSprites)
-            {
-                
-                g.DrawImage(
-                sprite.Sprite,  //Файл текстры объекта
-                new Rectangle(
-                    new Point(sprite.position.X, sprite.position.Y), //Позиция объекта на форме
-                    new Size(sprite.size.Width, sprite.size.Height)), //Размер объекта на форме
-                sprite.Sprite.Size.Width/sprite.frameAmount * sprite.currentFrame, 0, //Верхняя левая точка выреза текстуры
-                sprite.Sprite.Size.Width / sprite.frameAmount * sprite.flip, sprite.Sprite.Size.Height, //Ширина и высота части текстуры, а также поворот фигуры
-                GraphicsUnit.Pixel);
-            }
-            
+                DrawAnimationAndImage(sprite);                         
+        }
+
+        private static void DrawAnimationAndImage(Sprite2D sprite)
+        {
+            g.DrawImage(
+                   sprite.Sprite,  //Файл текстры объекта
+                   new Rectangle(
+                       new Point(sprite.position.X, sprite.position.Y), //Позиция объекта на форме
+                       new Size(sprite.size.Width, sprite.size.Height)), //Размер объекта на форме
+                   sprite.Sprite.Size.Width / sprite.frameAmount * sprite.currentFrame, 0, //Верхняя левая точка выреза текстуры
+                   sprite.Sprite.Size.Width / sprite.frameAmount * sprite.flip, sprite.Sprite.Size.Height, //Ширина и высота части текстуры, а также поворот фигуры
+                   GraphicsUnit.Pixel);
         }
 
         public abstract void OnLoad();
