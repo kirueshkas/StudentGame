@@ -55,6 +55,7 @@
     <Compile Include="Engine\Shape2D.cs" />
     <Compile Include="Engine\Sprite2D.cs" />
     <Compile Include="Engine\Vector2.cs" />
+    <Compile Include="Game\Clothes.cs" />
     <Compile Include="Game\Scenes\EditorScene.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\Scenes\MenuScene.cs" />
@@ -146,10 +147,19 @@
     <None Include="Resources\Leg5.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ManCharacter.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\WomanCharacter.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ManCharacter.png" />
+    <None Include="Resources\WomanHair1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ManHair2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ManHair1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

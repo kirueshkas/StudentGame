@@ -243,6 +243,26 @@ namespace StudentGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ManHair1 {
+            get {
+                object obj = ResourceManager.GetObject("ManHair1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ManHair2 {
+            get {
+                object obj = ResourceManager.GetObject("ManHair2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap photo_box {
             get {
                 object obj = ResourceManager.GetObject("photo_box", resourceCulture);
@@ -286,6 +306,16 @@ namespace StudentGame {
         internal static System.Drawing.Bitmap WomanCharacter {
             get {
                 object obj = ResourceManager.GetObject("WomanCharacter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WomanHair1 {
+            get {
+                object obj = ResourceManager.GetObject("WomanHair1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
