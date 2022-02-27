@@ -56,6 +56,17 @@ namespace StudentGame.Engine
             return DayTime;
         }
 
+        private static Vector2 DeterminePositionByDurationTime(int timeDurationInMinutes, Size windowSize )
+        {
+            var timeNow = DateTime.Now;
+            var timeNowInMinutes = timeNow.Hour * 60 + timeNow.Minute;
+            var g = 1d;
+            return new Vector2(windowSize.Width / timeDurationInMinutes * timeNowInMinutes,
+                (float) ((2 * windowSize.Height / timeDurationInMinutes - windowSize.Height / 3 + g * timeDurationInMinutes / 4) *
+                    timeDurationInMinutes - g * timeNowInMinutes * timeNowInMinutes / 2));
+        }
+        
+
         public static Bitmap SetBrightness(Bitmap btmap, int brightness)
         {
             Bitmap temp = btmap;
