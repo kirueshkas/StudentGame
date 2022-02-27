@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace StudentGame.Game
 {
@@ -36,6 +37,10 @@ namespace StudentGame.Game
             //Engine.Engine.BackgroundColor = Color.SkyBlue;
             moonSun = new Sprite2D(SeasonAndTime.DeterminePositionByDurationTime(720, new Size(1920, 1080)), "moonOrSun", DetermineTime(), 4, 100);
             RegisterSprite(moonSun);
+
+            foreach (var star in stars)
+                RegisterSprite(star);
+
             foreach (var cloud in clouds)
                 this.RegisterSprite(cloud);
             
@@ -94,6 +99,43 @@ namespace StudentGame.Game
             for (int i = 0; i < count; i++)
                 clouds[i] = new Sprite2D(new Point(param[i, 0], param[i, 1]), "cloud", Resource.cloud1_sheet_x10, 6, param[i, 2]);
             return clouds;
+        }
+
+        static Sprite2D[] CreateStarsArray(int count)
+        {
+            var stars = new Sprite2D[count];
+            var positionAndScale = new int[count, 3];
+            var random = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                positionAndScale[i, 0] = random.Next(1920);
+                positionAndScale[i, 1] = random.Next(700);
+                positionAndScale[i, 2] = random.Next(25, 100);
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                Bitmap star;
+                switch (random.Next(1, 3))
+                {
+                    case 1:
+                        star = Resource.star1;
+                        break;
+                    case 2:
+                        star = Resource.star2;
+                        break;
+                    case 3:
+                        star = Resource.star3;
+                        break;
+                    default:
+                        star = Resource.star1;
+                        break;
+                }
+                stars[i] = new Sprite2D(new Point(positionAndScale[i, 0], positionAndScale[i, 1]), "star" + (i + 1),
+                    star, 4);
+            }
+
+            return stars;
         }
 
 
@@ -186,7 +228,10 @@ namespace StudentGame.Game
                     Engine.Engine.BackgroundColor = Color.FromArgb(250, 214, 165);
                     return Resource.moon;
                 case SeasonAndTime.TimesDay.Night:
+                {
                     Engine.Engine.BackgroundColor = Color.FromArgb(29, 29, 29);
+                    stars = CreateStarsArray(20);
+                }
                     return Resource.moon;
                 default:
                     return Resource.sun;
