@@ -24,8 +24,7 @@ namespace StudentGame.Game
         private static Sprite2D urfu = DetermineSeasonUrfu();
         private static Bitmap bush = DetermineSeasonBush();
         private static Sprite2D[] stars;
-        private static Sprite2D sun;
-        private static Sprite2D moon;
+        private static Sprite2D moonSun;
         static Sprite2D[] bushes = CreateBushesArray(6);
         static Sprite2D[] clouds = CreateCloudsArray(9);
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
@@ -35,17 +34,17 @@ namespace StudentGame.Game
         public  void CreateMenu()
         {
             //Engine.Engine.BackgroundColor = Color.SkyBlue;
-            DetermineTime();
-            
+            moonSun = new Sprite2D(SeasonAndTime.DeterminePositionByDurationTime(720, new Size(1920, 1080)), "moonOrSun", DetermineTime());
+            RegisterSprite(moonSun);
             foreach (var cloud in clouds)
                 this.RegisterSprite(cloud);
-
+            
             this.RegisterSprite(urfu);
             this.RegisterSprite(flag);
-
+            
             foreach (var bush in bushes)
                 this.RegisterSprite(bush);
-
+            
             this.RegisterButton(studikButton);
             studikButton.Click += StudikButton_Click;
         }
@@ -171,24 +170,25 @@ namespace StudentGame.Game
             }
         }
 
-        private static void DetermineTime()
+        private static Bitmap DetermineTime()
         {
             var dayTime = SeasonAndTime.DayTime;
             switch (dayTime)
             {
                 case SeasonAndTime.TimesDay.Morning:
                     Engine.Engine.BackgroundColor = Color.Beige;
-                    break;
+                    return Resource.sun;
                 case SeasonAndTime.TimesDay.Day:
                     Engine.Engine.BackgroundColor = Color.SkyBlue;
-                    break;
+                    return Resource.sun;
                 case SeasonAndTime.TimesDay.Evening:
                     Engine.Engine.BackgroundColor = Color.FromArgb(250, 214, 165);
-                    break;
+                    return Resource.moon;
                 case SeasonAndTime.TimesDay.Night:
                     Engine.Engine.BackgroundColor = Color.FromArgb(29, 29, 29);
-                    break;
-
+                    return Resource.moon;
+                default:
+                    return Resource.sun;
             }
         }
     }

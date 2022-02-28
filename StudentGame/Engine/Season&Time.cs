@@ -56,14 +56,16 @@ namespace StudentGame.Engine
             return DayTime;
         }
 
-        private static Vector2 DeterminePositionByDurationTime(int timeDurationInMinutes, Size windowSize )
+        public static Point DeterminePositionByDurationTime(int DurationInMinutes, Size windowSize )
         {
             var timeNow = DateTime.Now;
-            var timeNowInMinutes = timeNow.Hour * 60 + timeNow.Minute;
-            var g = 1d;
-            return new Vector2(windowSize.Width / timeDurationInMinutes * timeNowInMinutes,
-                (float) ((2 * windowSize.Height / timeDurationInMinutes - windowSize.Height / 3 + g * timeDurationInMinutes / 4) *
-                    timeDurationInMinutes - g * timeNowInMinutes * timeNowInMinutes / 2));
+            var timeNowInMinutes = (timeNow.Hour * 60 + timeNow.Minute) % DurationInMinutes;
+            var a = 8d * windowSize.Height / (3 * windowSize.Width * windowSize.Width);
+            var b = -8d * windowSize.Height / (3 * windowSize.Width);
+            var c = 2d * windowSize.Height / 3;
+            var x = windowSize.Width * timeNowInMinutes / DurationInMinutes;
+            var y = a * x * x + b * x + c;
+            return new Point(x, (int) y);
         }
         
 
