@@ -38,8 +38,11 @@ namespace StudentGame.Game
             moonSun = new Sprite2D(SeasonAndTime.DeterminePositionByDurationTime(720, new Size(1920, 1080)), "moonOrSun", DetermineTime(), 4, 100);
             RegisterSprite(moonSun);
 
-            foreach (var star in stars)
-                RegisterSprite(star);
+            if (stars != null)
+            {
+                foreach (var star in stars)
+                    RegisterSprite(star);
+            }
 
             foreach (var cloud in clouds)
                 this.RegisterSprite(cloud);
