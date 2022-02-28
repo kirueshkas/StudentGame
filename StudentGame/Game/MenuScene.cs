@@ -34,7 +34,7 @@ namespace StudentGame.Game
         public  void CreateMenu()
         {
             //Engine.Engine.BackgroundColor = Color.SkyBlue;
-            moonSun = new Sprite2D(SeasonAndTime.DeterminePositionByDurationTime(720, new Size(1920, 1080)), "moonOrSun", DetermineTime(), 2, 100);
+            moonSun = new Sprite2D(SeasonAndTime.DeterminePositionByDurationTime(720, new Size(1920, 1080)), "moonOrSun", DetermineTime(), 4, 100);
             RegisterSprite(moonSun);
             foreach (var cloud in clouds)
                 this.RegisterSprite(cloud);
