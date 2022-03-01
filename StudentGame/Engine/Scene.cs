@@ -71,7 +71,8 @@ namespace StudentGame.Engine
         public void UnRegisterTextBox(TextBox textBox)
         {
             AllGameTextBoxes.Remove(textBox);
-            Log.Info($"[TXTBOX] ({textBox.Tag}) - Has been destroyer");
+            Form.ActiveForm.Controls.Remove(textBox);
+            Log.Info($"[TXTBOX] ({textBox.Tag}) - Has been destroyed");
         }
 
         public abstract void OnLoad();

@@ -11,23 +11,22 @@ namespace StudentGame.Game
 {
     class MenuScene : Scene
     {
-        Button studikButton = Interface.CreateButton(Resource.studik.Width, Resource.studik.Height, 750, 510, "Studik", "studik", Resource.studik,  false);
-        Button startButton = Interface.CreateButton(330, 50, 1000, 550, "Start", "start");
-        Button multiplayerButton = Interface.CreateButton(330, 50, 1000, 605, "Multiplayer", "multiplayer");
-        Button optionsButton = Interface.CreateButton(330, 50, 1000, 660, "Options", "options");
-        Button exitButton = Interface.CreateButton(330, 50, 1000, 715, "Exit", "exit");
-        Button editorWindow = Interface.CreateButton(120, 160, 600, 550, "Editor", "editor", Resource.photobox1, false);
+        Button studikButton = Interface.CreateButton(Resource.studik.Width, Resource.studik.Height, 750, 510, "Studik", Resource.studik, "studik", false);
+        Button startButton = Interface.CreateButton(330, 50, 1000, 550, "Start", Resource.button_new, "start");
+        Button multiplayerButton = Interface.CreateButton(330, 50, 1000, 605, "Multiplayer", Resource.button_new, "multiplayer");
+        Button optionsButton = Interface.CreateButton(330, 50, 1000, 660, "Options", Resource.button_new, "options");
+        Button exitButton = Interface.CreateButton(330, 50, 1000, 715, "Exit", Resource.button_new, "exit");
+        Button editorWindow = Interface.CreateButton(120, 160, 600, 550, "Editor", Resource.photo_box, "editor", false);
+        Button registerButton = Interface.CreateButton(330, 50, 600, 715, "Register", Resource.button_new, "register");
+        Button signOutButton = Interface.CreateButton(200, 40, 730, 650, "Sign out", Resource.button_new, "signOut");
         TextBox nameTextBox = Interface.CreateTextBox(200, 40, 730, 550, "Name", 0);
         TextBox surNameTextBox = Interface.CreateTextBox(200, 40, 730, 600, "SurName", 1);
         TextBox passwordTextBox = Interface.CreateTextBox(200, 40, 730, 650, "Password", 2);
-        Sprite2D urfu = new Sprite2D(new Point(0, 0), "urfu", Resource.urfu_new_1920_1080);
+        Sprite2D urfu = DetermineSeasonAndTime();
         Sprite2D openStudik = new Sprite2D(new Point(550, 510), "openStudik", Resource.studik_open_clear);
         Sprite2D flag = new Sprite2D(new Point(957, 180), "flag", Resource.flag_rus_sheet, 6);
 
-        static Sprite2D[] bushes = CreateBushesArray(6);
-        static Sprite2D[] clouds = CreateCloudsArray(9);
-
-        public void CreateMenu()
+        public  void CreateMenu()
         {
             Engine.Engine.BackgroundColor = Color.SkyBlue;
 
@@ -46,7 +45,6 @@ namespace StudentGame.Game
 
         public override void OnLoad()
         {
-            CreateMenu();
         }
 
         public override void OnUpdate()
@@ -109,34 +107,26 @@ namespace StudentGame.Game
             this.RegisterButton(optionsButton);
             this.RegisterButton(exitButton);
             this.RegisterButton(editorWindow);
+            this.RegisterButton(registerButton);
 
             this.RegisterTextBox(nameTextBox);
             this.RegisterTextBox(surNameTextBox);
             this.RegisterTextBox(passwordTextBox);
+
+            startButton.Click += StartButton_Click;
             editorWindow.Click += EditorWindow_Click;
             editorWindow.MouseEnter += EditorWindow_Enter;
             editorWindow.MouseLeave += EditorWindow_Leave;
             exitButton.Click += ExitButton_Click;
-            startButton.Click += StartButton_Click;
         }
         private void EditorWindow_Leave(object sender, EventArgs e)
         {
             editorWindow.BackgroundImage = Resource.photobox1;
         }
 
-        private void EditorWindow_Enter(object sender, EventArgs e)
-        {
-            editorWindow.BackgroundImage = Resource.photobox2;
-        }
-
-        private void StartButton_Click(object sender, EventArgs e)
-        {
-            this.UnRegisterButton(startButton);
-        }
-
         private void BackButton_Click(object sender, EventArgs e)
         {
-            Engine.Engine.GetScene("menu");
+
         }
 
         private void EditorWindow_Click(object sender, EventArgs e)

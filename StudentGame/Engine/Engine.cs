@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace StudentGame.Engine
 {
     class Canvas : Form
-    {        
+    {
+
         public Canvas()
         {
             ClientSize = new Size(1920, 1080);
@@ -28,10 +29,10 @@ namespace StudentGame.Engine
     {
         public System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        private Vector2 WindowSize = new Vector2(512,512);
+        private Vector2 WindowSize = new Vector2(512, 512);
         private string Title;
         private static Canvas Window = null;
-        
+
         private Thread GameLoopThread = null;
 
         public static List<Scene> scenes = new List<Scene>();
@@ -50,12 +51,12 @@ namespace StudentGame.Engine
             Window.Text = this.Title;
             Window.Load += GameLoad;
             Window.Paint += RendererTextures;
-           
+            
             GameLoopThread = new Thread(GameLoop);
             GameLoopThread.Start();
             Log.Info("Game create!");
             Application.Run(Window);
-            
+
         }
         private void GameLoad(object sender, EventArgs e)
         {
@@ -68,7 +69,7 @@ namespace StudentGame.Engine
             RendererInterface();
             Window.Invalidate(); 
         }
-        
+
         public static void RegisterScene(Scene scene)
         {
             scenes.Add(scene);
@@ -83,24 +84,26 @@ namespace StudentGame.Engine
         public static void GetScene(string tag)
         {
             Window.Controls.Clear();
-            SceneID = scenes.Find(scene => scene.Tag == tag).ID;         
+            Scene newScene = scenes.Find(scene => scene.Tag == tag);
+            newScene.OnLoad();
+            SceneID = newScene.ID;
         }
 
         void GameLoop()
         {
-            OnLoad();          
+            OnLoad();
             while (GameLoopThread.IsAlive)
             {
                 try
-                {                  
+                {
                     foreach (var sprite in scenes[SceneID].AllSprites)
-                        sprite.currentFrame = sprite.currentFrame < sprite.frameAmount - 1 ? sprite.currentFrame += 1 : sprite.currentFrame = 0;                    
+                        sprite.currentFrame = sprite.currentFrame < sprite.frameAmount - 1 ? sprite.currentFrame += 1 : sprite.currentFrame = 0;
                     Window.Invoke((MethodInvoker)delegate { Window.Refresh(); });
                     OnUpdate();
                     Thread.Sleep(150);
                 }
                 catch
-                {Log.Error("Game has not been found...");}
+                { Log.Error("Game has not been found..."); }
             }
         }
 
@@ -119,22 +122,23 @@ namespace StudentGame.Engine
             g.Clear(BackgroundColor);
 
             foreach (var shape in scenes[SceneID].AllShapes)
+            {
                 g.FillRectangle(new SolidBrush(Color.Red), shape.Position.X,shape.Position.Y,shape.Scale.X,shape.Scale.Y);
+            }
 
             foreach (var sprite in scenes[SceneID].AllSprites)
-                DrawAnimationAndImage(sprite, g);                         
-        }
-
-        private static void DrawAnimationAndImage(Sprite2D sprite, Graphics g)
-        {
-            g.DrawImage(
-                   sprite.Sprite,  //Файл текстры объекта
-                   new Rectangle(
-                       new Point(sprite.position.X, sprite.position.Y), //Позиция объекта на форме
-                       new Size(sprite.size.Width, sprite.size.Height)), //Размер объекта на форме
-                   sprite.Sprite.Size.Width / sprite.frameAmount * sprite.currentFrame, 0, //Верхняя левая точка выреза текстуры
-                   sprite.Sprite.Size.Width / sprite.frameAmount * sprite.flip, sprite.Sprite.Size.Height, //Ширина и высота части текстуры, а также поворот фигуры
-                   GraphicsUnit.Pixel);
+            {
+                
+                g.DrawImage(
+                sprite.Sprite,  //Файл текстры объекта
+                new Rectangle(
+                    new Point(sprite.position.X, sprite.position.Y), //Позиция объекта на форме
+                    new Size(sprite.size.Width, sprite.size.Height)), //Размер объекта на форме
+                sprite.Sprite.Size.Width/sprite.frameAmount * sprite.currentFrame, 0, //Верхняя левая точка выреза текстуры
+                sprite.Sprite.Size.Width / sprite.frameAmount * sprite.flip, sprite.Sprite.Size.Height, //Ширина и высота части текстуры, а также поворот фигуры
+                GraphicsUnit.Pixel);
+            }
+            
         }
 
         public abstract void OnLoad();
