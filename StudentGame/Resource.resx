@@ -136,6 +136,12 @@
   <data name="bush_summer_Sheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\bush_summer-Sheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="button_menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\button_menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="button_menu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\button_menu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="button_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\button_new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,6 +175,9 @@
   <data name="Leg5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Leg5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ManCharacter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ManCharacter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="photo_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\photo_box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -178,8 +187,20 @@
   <data name="studik_open_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\studik_open_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="urfu_autumn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_autumn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="urfu_new_1920_1080" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\urfu_new_1920_1080.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urfu_spring" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_spring.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urfu_summer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_summer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urfu_winter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\urfu_winter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WomanCharacter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\WomanCharacter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

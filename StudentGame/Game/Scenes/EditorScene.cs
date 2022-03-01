@@ -11,8 +11,11 @@ namespace StudentGame.Game
 {
     class EditorScene : Engine.Scene
     {
+        public static User user = new User();
+        SQLiteAcess localDB = new SQLiteAcess();
+        MySQL serverDB = new MySQL();
 
-        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.button_new, "back");
+        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", "back");
         Sprite2D secondHand = new Sprite2D(new Point(0, 0), "secondHand", Resource.character_editor);
         Button backHelmetButton = Interface.CreateButton(250, 50, 200, 200, "BackHelmet", Resource.button_new, "backHelmet");
         Button nextHelmetButton = Interface.CreateButton(250, 50, 1500, 200, "NextHelmet", Resource.button_new, "nextHelmet");
@@ -20,8 +23,8 @@ namespace StudentGame.Game
         Button nextBudyButton = Interface.CreateButton(250, 50, 1500, 400, "NextBody", Resource.button_new, "nextBody");
         Button backLegButton = Interface.CreateButton(250, 50, 200, 600, "BackLeg", Resource.button_new, "backLeg");
         Button nextLegButton = Interface.CreateButton(250, 50, 1500, 600, "NextLeg", Resource.button_new, "nextLeg");
-        Sprite2D editorChatacter = new Sprite2D(new Point(870, 550), "womanCharacter", Resource.WomanCharacter);
-        // Button BackSceneButton = Interface.CreateButton(100, 100, 10, 10, "Back", Resource.button_new, "Back");
+        Button changeSexButton = Interface.CreateButton(250, 50, 830, 10, "ChangeSex", Resource.button_new, "ChangeSex");
+        Sprite2D editorCharacter = new Sprite2D(new Point(870, 550), "Character", Resource.ManCharacter);
 
         //Clothes
         static Sprite2D body1 = new Sprite2D(new Point(870, 700), "body1", Resource.Body1);
@@ -44,7 +47,7 @@ namespace StudentGame.Game
             body4,
             body5
         };
-        int bodyIndex = 0;
+        public static int bodyIndex = 0;
 
         Sprite2D[] LegClothes = new Sprite2D[]
         {
@@ -54,16 +57,17 @@ namespace StudentGame.Game
             leg4,
             leg5
         };
-        int legIndex = 0;
+        public static int legIndex = 0;
 
 
         public override void OnLoad()
         {
-            CreateEdtior();
+            CheckSql();
         }
 
         public override void OnUpdate()
         {
+            throw new NotImplementedException();
         }
 
 
@@ -82,7 +86,9 @@ namespace StudentGame.Game
             backLegButton.Click += EditorButtons_Click;
             this.RegisterButton(nextLegButton);
             nextLegButton.Click += EditorButtons_Click;
-            this.RegisterSprite(editorChatacter);
+            this.RegisterButton(changeSexButton);
+            changeSexButton.Click += EditorButtons_Click;
+            this.RegisterSprite(editorCharacter);
             this.RegisterSprite(BodyClothes[bodyIndex]);
             this.RegisterSprite(LegClothes[legIndex]);
         }
@@ -118,7 +124,67 @@ namespace StudentGame.Game
         }
         private void EditorBackButton_Click(object sender, EventArgs e)
         {
+            user.Leg = legIndex.ToString();
+            user.Body = bodyIndex.ToString();
+
+            localDB.UpdateUserClothes(user);
+            user = localDB.GetUser(1);
+            Log.Info("User clothes saved localy!");
+            if (MenuScene.IsSighedIn)
+                try
+                {
+                    serverDB.UpdateUserClothes(user);
+                    Log.Info("User clothes saved on server!");
+                }
+                catch
+                {
+                    Log.Warning("User clothes did not save on server!");
+                }
+
             Engine.Engine.GetScene("menu");
+        }
+
+        public void CheckSql()
+        {
+            if (localDB.GetUser(1).FirstName != null)
+            {
+                user = localDB.GetUser(1);
+                Log.Info("User found!");
+                try
+                {
+                    localDB.RefreshUserByIdFromServer(user.Id);
+                    user = localDB.GetUser(1);
+
+                    Log.Info("User clothes updated!");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message);
+                }
+
+                Update();
+            }
+            else
+            {
+                user = new User();
+
+                Update();
+                Log.Info("No user!");
+            }
+        }
+
+        private void Update()
+        {
+            if (user.Sex == "woman") editorCharacter.Sprite = Resource.WomanCharacter;
+            else editorCharacter.Sprite = Resource.ManCharacter;
+
+            this.UnRegisterSprite(LegClothes[legIndex]);
+            legIndex = int.Parse(user.Leg);
+            this.RegisterSprite(LegClothes[legIndex]);
+
+            this.UnRegisterSprite(BodyClothes[bodyIndex]);
+            bodyIndex = int.Parse(user.Body);
+            this.RegisterSprite(BodyClothes[bodyIndex]);
         }
     }
 }
