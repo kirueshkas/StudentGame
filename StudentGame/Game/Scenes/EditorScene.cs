@@ -14,8 +14,8 @@ namespace StudentGame.Game
 
         Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.button_new, "back");
         Sprite2D secondHand = new Sprite2D(new Point(0, 0), "secondHand", Resource.character_editor);
-        Button backHelmetButton = Interface.CreateButton(250, 50, 200, 200, "BackHelmet", Resource.button_new, "backHelmet");
-        Button nextHelmetButton = Interface.CreateButton(250, 50, 1500, 200, "NextHelmet", Resource.button_new, "nextHelmet");
+        Button backHairButton = Interface.CreateButton(250, 50, 200, 200, "BackHair", Resource.button_new, "backHair");
+        Button nextHairButton = Interface.CreateButton(250, 50, 1500, 200, "NextHair", Resource.button_new, "nextHair");
         Button backBodyButton = Interface.CreateButton(250, 50, 200, 400, "BackBody", Resource.button_new, "backBody");
         Button nextBudyButton = Interface.CreateButton(250, 50, 1500, 400, "NextBody", Resource.button_new, "nextBody");
         Button backLegButton = Interface.CreateButton(250, 50, 200, 600, "BackLeg", Resource.button_new, "backLeg");
@@ -45,9 +45,11 @@ namespace StudentGame.Game
             this.RegisterButton(backButton);
             backButton.Click += EditorBackButton_Click;
             this.RegisterSprite(secondHand);
-            this.RegisterButton(backHelmetButton);
-            this.RegisterButton(nextHelmetButton);
+            this.RegisterButton(backHairButton);
+            this.RegisterButton(nextHairButton);
+            nextHairButton.Click += EditorButtons_Click;
             this.RegisterButton(backBodyButton);
+            backHairButton.Click += EditorButtons_Click;
             backBodyButton.Click += EditorButtons_Click;
             this.RegisterButton(nextBudyButton);
             nextBudyButton.Click += EditorButtons_Click;
@@ -60,6 +62,7 @@ namespace StudentGame.Game
             this.RegisterSprite(editorCharacter);
             this.RegisterSprite(Clothes.BodyClothes[Clothes.bodyIndex]);
             this.RegisterSprite(Clothes.LegClothes[Clothes.legIndex]);
+            this.RegisterSprite(Clothes.ManHair[Clothes.hairIndex]);
            // this.RegisterSprite(hair);
         }
 
@@ -90,14 +93,46 @@ namespace StudentGame.Game
                     Clothes.legIndex = Clothes.legIndex > Clothes.LegClothes.Length - 2 ? 0 : Clothes.legIndex + 1;
                     this.RegisterSprite(Clothes.LegClothes[Clothes.legIndex]);
                     break;
+                case "NextHair":
+                    if (User.sex == "woman")
+                    {
+                        this.UnRegisterSprite(Clothes.WomanHair[Clothes.hairIndex]);
+                        Clothes.hairIndex = Clothes.hairIndex > Clothes.WomanHair.Length - 2 ? 0 : Clothes.hairIndex + 1;
+                        this.RegisterSprite(Clothes.WomanHair[Clothes.hairIndex]);
+                    }
+                    else
+                    {
+                        this.UnRegisterSprite(Clothes.ManHair[Clothes.hairIndex]);
+                        Clothes.hairIndex = Clothes.hairIndex > Clothes.ManHair.Length - 2 ? 0 : Clothes.hairIndex + 1;
+                        this.RegisterSprite(Clothes.ManHair[Clothes.hairIndex]);
+                    }    
+                    break;
+                case "BackHair":
+                    if (User.sex == "woman")
+                    {
+                        this.UnRegisterSprite(Clothes.WomanHair[Clothes.hairIndex]);
+                        Clothes.hairIndex = Clothes.hairIndex < 1 ? Clothes.WomanHair.Length - 1 : Clothes.hairIndex - 1;
+                        this.RegisterSprite(Clothes.WomanHair[Clothes.hairIndex]);
+                    }
+                    else
+                    {
+                        this.UnRegisterSprite(Clothes.ManHair[Clothes.hairIndex]);
+                        Clothes.hairIndex = Clothes.hairIndex < 1 ? Clothes.WomanHair.Length - 1 : Clothes.hairIndex - 1;
+                        this.RegisterSprite(Clothes.ManHair[Clothes.hairIndex]);
+                    }
+                    break;
                 case "ChangeSex":
                     if (User.sex == "woman")
                     {
                         editorCharacter.Sprite = Resource.ManCharacter;
+                        this.UnRegisterSprite(Clothes.WomanHair[Clothes.hairIndex]);
+                        this.RegisterSprite(Clothes.ManHair[Clothes.hairIndex]);
                         User.sex = "man";
                     }
                     else
                     {
+                        this.UnRegisterSprite(Clothes.ManHair[Clothes.hairIndex]);
+                        this.RegisterSprite(Clothes.WomanHair[Clothes.hairIndex]);
                         editorCharacter.Sprite = Resource.WomanCharacter;
                         User.sex = "woman";
                     }

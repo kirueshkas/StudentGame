@@ -23,6 +23,11 @@ namespace StudentGame.Game
         public static Sprite2D leg4 = new Sprite2D(new Point(900, 840), "leg4", Resource.Leg4);
         public static Sprite2D leg5 = new Sprite2D(new Point(900, 840), "leg5", Resource.Leg5);
 
+        public static Sprite2D manHair1 = new Sprite2D(new Point(870, 520), "leg1", Resource.ManHair1);
+        public static Sprite2D manHair2 = new Sprite2D(new Point(870, 520), "leg1", Resource.ManHair2);
+
+        public static Sprite2D womanHair1 = new Sprite2D(new Point(870, 520), "leg1", Resource.WomanHair1);
+        public static Sprite2D womanHair2 = new Sprite2D(new Point(870, 520), "leg1", Resource.WomanHair2);
 
 
         public static Sprite2D[] BodyClothes = new Sprite2D[]
@@ -44,5 +49,18 @@ namespace StudentGame.Game
             leg5
         };
         public static int legIndex = 0;
+
+        public static int hairIndex = 0;
+        public static Sprite2D[] ManHair = new Sprite2D[]
+        {
+            manHair1,
+            manHair2
+        };
+
+        public static Sprite2D[] WomanHair = new Sprite2D[]
+        {
+            womanHair1,
+            womanHair2
+        };
     }
 }
