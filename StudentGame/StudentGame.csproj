@@ -52,6 +52,7 @@
     <Compile Include="Engine\Interface.cs" />
     <Compile Include="Engine\Log.cs" />
     <Compile Include="Engine\Scene.cs" />
+    <Compile Include="Engine\Season&amp;Time.cs" />
     <Compile Include="Engine\Shape2D.cs" />
     <Compile Include="Engine\Sprite2D.cs" />
     <Compile Include="Engine\Vector2.cs" />
@@ -175,6 +176,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\urfu_spring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arror.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arror_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

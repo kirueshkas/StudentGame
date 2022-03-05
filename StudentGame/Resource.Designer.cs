@@ -63,6 +63,26 @@ namespace StudentGame {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arror {
+            get {
+                object obj = ResourceManager.GetObject("arror", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arror_hover {
+            get {
+                object obj = ResourceManager.GetObject("arror_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Body1 {
             get {
                 object obj = ResourceManager.GetObject("Body1", resourceCulture);
@@ -116,6 +136,26 @@ namespace StudentGame {
         internal static System.Drawing.Bitmap bush_summer_Sheet {
             get {
                 object obj = ResourceManager.GetObject("bush_summer_Sheet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_menu {
+            get {
+                object obj = ResourceManager.GetObject("button_menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_menu1 {
+            get {
+                object obj = ResourceManager.GetObject("button_menu1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,6 +313,26 @@ namespace StudentGame {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap photobox1 {
+            get {
+                object obj = ResourceManager.GetObject("photobox1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photobox2 {
+            get {
+                object obj = ResourceManager.GetObject("photobox2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap studik {
             get {
                 object obj = ResourceManager.GetObject("studik", resourceCulture);
@@ -293,9 +353,49 @@ namespace StudentGame {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap urfu_autumn {
+            get {
+                object obj = ResourceManager.GetObject("urfu_autumn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap urfu_new_1920_1080 {
             get {
                 object obj = ResourceManager.GetObject("urfu_new_1920_1080", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap urfu_spring {
+            get {
+                object obj = ResourceManager.GetObject("urfu_spring", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap urfu_summer {
+            get {
+                object obj = ResourceManager.GetObject("urfu_summer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap urfu_winter {
+            get {
+                object obj = ResourceManager.GetObject("urfu_winter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

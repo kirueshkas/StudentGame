@@ -25,7 +25,7 @@ namespace StudentGame.Engine
                 Text = text,
                 Name = text,
                 TabIndex = tabIndex,
-                Font = new Font("Microsoft Sans Serif", (int)(20 * resolutionX)),
+                Font = new Font("StudentFont", (int)(30 * resolutionX)),
                 ForeColor = Color.Gray,
             };
             textBox.Multiline = true;
@@ -33,8 +33,11 @@ namespace StudentGame.Engine
             textBox.Leave += TextBoxLeave;
             return textBox;
         }
-        public static Button CreateButton(int width, int height, int x, int y, string text, Bitmap texture,string Tag, bool IsText = true)
+        public static Button CreateButton(int width, int height, int x, int y, string text, string Tag, Bitmap texture = null, bool IsText = true)
         {
+            if (texture ==null)
+                texture = Resource.button_menu;
+
             Button button = new Button
             {
                 Size = new Size((int)(width * resolutionX), (int)(height * resolutionY)),
@@ -44,14 +47,28 @@ namespace StudentGame.Engine
                 BackColor = Color.Transparent,
                 BackgroundImage = texture,
                 BackgroundImageLayout = ImageLayout.Stretch,
+                Font = new Font("StudentFont", (int)(30 * resolutionX)),
                 Tag = Tag
             };
             button.Text = IsText ? text : null;
             button.FlatAppearance.BorderSize = 0;
-            button.Font = new Font("Microsoft Sans Serif", (int)(25 * resolutionX));
             button.MouseEnter += Button_MouseEnter;
             button.MouseLeave += Button_MouseLeave;
             return button;
+        }
+
+        public static Label CreateLabel(int width, int height, int x, int y, string text)
+        {
+            Label label = new Label
+            {
+                Size = new Size((int)(width * resolutionX), (int)(height * resolutionY)),
+                Location = new Point((int)(x * resolutionX), (int)(y * resolutionY)),
+                Font = new Font("StudentFont", (int)(40 * resolutionX)),
+                Text = text,
+                BackColor = Color.Transparent,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            return label;
         }
 
         private static void Button_MouseEnter(object sender, EventArgs e)

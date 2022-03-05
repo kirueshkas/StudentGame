@@ -12,7 +12,7 @@ namespace StudentGame.Game
     class EditorScene : Engine.Scene
     {
 
-        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", Resource.button_new, "back");
+        Button backButton = Interface.CreateButton(100, 50, 10, 10, "Back", "back");
         Sprite2D secondHand = new Sprite2D(new Point(0, 0), "secondHand", Resource.character_editor);
         Button backHairButton = Interface.CreateButton(250, 50, 200, 200, "BackHair", "backHair");
         Button nextHairButton = Interface.CreateButton(250, 50, 1500, 200, "NextHair", "nextHair");
@@ -22,13 +22,18 @@ namespace StudentGame.Game
         Button nextLegButton = Interface.CreateButton(250, 50, 1500, 600, "NextLeg", "nextLeg");
         Button changeSexButton = Interface.CreateButton(250, 50, 830, 10, "ChangeSex", "ChangeSex");
         Sprite2D editorCharacter = new Sprite2D(new Point(870, 550), "Character", Resource.ManCharacter);
-        // Button BackSceneButton = Interface.CreateButton(100, 100, 10, 10, "Back", Resource.button_new, "Back");
 
         Label sexLabel = Interface.CreateLabel(245, 100, 55 , 150, "Sex");
         Label skinLabel = Interface.CreateLabel(245, 100, 305, 150, "Skin");
         Label hairLabel = Interface.CreateLabel(245, 100, 175, 290, "Hair");
 
+        Button backHairButton = Interface.CreateButton(50, 35, 75, 230, "BackHair", "backHair", Resource.arror, false);
+        Button nextHairButton = Interface.CreateButton(50, 35, 230, 230, "NextHair", "nextHair", Resource.arror, false);
 
+        Label hatLabel = Interface.CreateLabel(245, 100, 55, 430, "Hat");
+        Label upperLabel = Interface.CreateLabel(245, 100, 305, 430, "Upper");
+        Label bottomLabel = Interface.CreateLabel(245, 100, 175, 570, "Bottom");
+        Label shoesLabel = Interface.CreateLabel(245, 100, 55, 710, "Shoes");
 
         public override void OnLoad()
         {
@@ -42,6 +47,13 @@ namespace StudentGame.Game
 
         public void CreateEdtior()
         {
+            this.RegisterLabel(sexLabel);
+            this.RegisterLabel(skinLabel);
+            RegisterLabel(hairLabel);
+            RegisterLabel(hatLabel);
+            RegisterLabel(upperLabel);
+            RegisterLabel(bottomLabel);
+            RegisterLabel(shoesLabel);
             this.RegisterButton(backButton);
             backButton.Click += EditorBackButton_Click;
             this.RegisterSprite(secondHand);
