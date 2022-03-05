@@ -177,5 +177,11 @@
   <ItemGroup>
     <None Include="Resources\urfu_spring.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arror.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arror_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

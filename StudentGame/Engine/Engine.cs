@@ -111,6 +111,8 @@ namespace StudentGame.Engine
 
             foreach (var gameTextBox in scenes[SceneID].AllGameTextBoxes)
                 Window.Controls.Add(gameTextBox);
+            foreach (var gameLabel in scenes[SceneID].AllGameLabels)
+                Window.Controls.Add(gameLabel);
         }
 
         private static void RendererTextures(object sender, PaintEventArgs e)

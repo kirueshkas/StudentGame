@@ -12,6 +12,7 @@ namespace StudentGame.Engine
         public List<Shape2D> AllShapes = new List<Shape2D>();
         public List<Sprite2D> AllSprites = new List<Sprite2D>();
         public List<Button> AllGameButtons = new List<Button>();
+        public List<Label> AllGameLabels = new List<Label>();
         public List<TextBox> AllGameTextBoxes = new List<TextBox>();
         public string Tag;
 
@@ -72,6 +73,16 @@ namespace StudentGame.Engine
         {
             AllGameTextBoxes.Remove(textBox);
             Log.Info($"[TXTBOX] ({textBox.Tag}) - Has been destroyer");
+        }
+        public void RegisterLabel(Label label)
+        {
+            AllGameLabels.Add(label);
+            Log.Info($"[LBL] ({label.Text}) - Has been registered");
+        }
+        public void UnRegisterLabel(Label label)
+        {
+            AllGameLabels.Remove(label);
+            Log.Info($"[LBL] ({label.Text}) - Has been destroyer");
         }
 
         public abstract void OnLoad();
