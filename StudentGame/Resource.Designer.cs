@@ -263,6 +263,26 @@ namespace StudentGame {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ManHair1 {
+            get {
+                object obj = ResourceManager.GetObject("ManHair1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ManHair2 {
+            get {
+                object obj = ResourceManager.GetObject("ManHair2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap photo_box {
             get {
                 object obj = ResourceManager.GetObject("photo_box", resourceCulture);
@@ -366,6 +386,26 @@ namespace StudentGame {
         internal static System.Drawing.Bitmap WomanCharacter {
             get {
                 object obj = ResourceManager.GetObject("WomanCharacter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WomanHair1 {
+            get {
+                object obj = ResourceManager.GetObject("WomanHair1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WomanHair2 {
+            get {
+                object obj = ResourceManager.GetObject("WomanHair2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
