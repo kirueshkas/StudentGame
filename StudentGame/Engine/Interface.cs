@@ -49,8 +49,31 @@ namespace StudentGame.Engine
             button.Text = IsText ? text : null;
             button.FlatAppearance.BorderSize = 0;
             button.Font = new Font("Microsoft Sans Serif", (int)(25 * resolutionX));
+            button.MouseEnter += Button_MouseEnter;
+            button.MouseLeave += Button_MouseLeave;
             return button;
         }
+
+        private static void Button_MouseEnter(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (button.Text != "")
+            {
+                button.Location = new Point(button.Location.X, button.Location.Y );
+                button.BackgroundImage = Resource.button_menu1;
+            }
+        }
+
+        private static void Button_MouseLeave(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (button.Text != "")
+            {
+                button.Location = new Point(button.Location.X, button.Location.Y );
+                button.BackgroundImage = Resource.button_menu;
+            }
+        }
+
         public static void TextBoxEnter(object sender, EventArgs e)
         {
             TextBox textbox = (TextBox)sender;
