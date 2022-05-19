@@ -23,10 +23,11 @@ namespace StudentGame.Engine
 
         public static Seasons season = DetermineSeason();
         public static TimesDay dayTime = DetermineTimeDay();
-        readonly static DateTime TimeNow = DateTime.Now;
+        private static DateTime TimeNow;
 
         private static Seasons DetermineSeason()
         {
+            TimeNow = DateTime.Now;
             var month = TimeNow.Month;
             if (month < 3 || month == 12) 
                 season = Seasons.Winter;
@@ -41,6 +42,7 @@ namespace StudentGame.Engine
 
         private static TimesDay DetermineTimeDay()
         {
+            TimeNow = DateTime.Now;
             var time = TimeNow.Hour;
             if (time < 6)
                 dayTime = TimesDay.Night;
